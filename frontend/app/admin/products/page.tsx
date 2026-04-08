@@ -13,6 +13,7 @@ const [category,setCategory] = useState("")
 const [description,setDescription] = useState("")
 const [image,setImage] = useState(null)
 const [editingProduct,setEditingProduct] = useState(null)
+const BASE_URL = "https://sweets-and-backery-website.onrender.com"
 
 useEffect(()=>{
 fetchProducts()
@@ -20,7 +21,7 @@ fetchProducts()
 
 async function fetchProducts(){
 
-const res = await fetch("http://localhost:5000/api/products")
+const res = await fetch(`${BASE_URL}/api/products`)
 const data = await res.json()
 
 setProducts(data)
@@ -42,7 +43,7 @@ if(image){
 formData.append("image", image)
 }
 
-await fetch("http://localhost:5000/api/products",{
+await fetch(`${BASE_URL}/api/products`,{
 method:"POST",
 body:formData
 })
@@ -55,7 +56,7 @@ fetchProducts()
 // ❌ DELETE
 async function deleteProduct(id){
 
-await fetch(`http://localhost:5000/api/products/${id}`,{
+await fetch(`${BASE_URL}/api/products/${id}`,{
 method:"DELETE"
 })
 
@@ -91,7 +92,7 @@ if(image){
 formData.append("image", image)
 }
 
-await fetch(`http://localhost:5000/api/products/${editingProduct._id}`,{
+await fetch(`${BASE_URL}/api/products/${editingProduct._id}`,{
 method:"PUT",
 body:formData
 })
@@ -189,7 +190,7 @@ className="border p-4 rounded flex justify-between items-center"
 
 {product.image && (
 <img
-src={`http://localhost:5000${product.image}`}
+src={`${BASE_URL}${product.image}`}
 className="w-16 h-16 object-cover rounded"
 />
 )}
