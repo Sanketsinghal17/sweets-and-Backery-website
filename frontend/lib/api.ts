@@ -1,7 +1,6 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://sweets-and-bakery-website.onrender.com/api";
 
 export async function fetchProducts() {
-
   const res = await fetch(`${API_URL}/products`);
 
   if (!res.ok) {
@@ -9,5 +8,4 @@ export async function fetchProducts() {
   }
 
   return res.json();
-
 }
