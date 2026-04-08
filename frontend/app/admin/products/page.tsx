@@ -48,6 +48,9 @@ method:"POST",
 body:formData
 })
 
+await fetchProducts()
+setTimeout(fetchProducts, 500)
+
 resetForm()
 fetchProducts()
 
@@ -190,7 +193,11 @@ className="border p-4 rounded flex justify-between items-center"
 
 {product.image && (
 <img
-src={`${BASE_URL}${product.image}`}
+src={
+  product.image?.startsWith("/uploads")
+    ? `${BASE_URL}${product.image}`
+    : product.image
+}
 className="w-16 h-16 object-cover rounded"
 />
 )}
