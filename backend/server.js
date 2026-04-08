@@ -17,9 +17,16 @@ app.use(express.json())
 app.use("/api/products", productRoutes)
 app.use("/api/orders", orderRoutes)
 app.use("/uploads", express.static("uploads"))
+app.use((req, res) => {
+  console.log("Route not matched:", req.url)
+  res.status(404).send("Route not found ❌")
+})
 
 app.get("/", (req, res) => {
   res.send("Backend is running")
+})
+app.get("/api/test", (req, res) => {
+  res.send("API working ✅")
 })
 
 mongoose.connect(process.env.MONGO_URI)
