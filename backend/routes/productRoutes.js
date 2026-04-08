@@ -1,3 +1,4 @@
+console.log("Product routes loaded 🚀")
 import express from "express"
 import { upload } from "../middleware/upload.js"
 import {
