@@ -54,8 +54,8 @@ export const createOrder = async (req, res) => {
     console.log("🔥 ORDER CREATED, SENDING TELEGRAM...")
 
     try {
-      const TELEGRAM_TOKEN = "YOUR_BOT_TOKEN"
-      const CHAT_ID = "YOUR_CHAT_ID"
+      const TELEGRAM_TOKEN = "8630182529:AAFU3-w7UjQmolGUMY0AZjZjP6VI1TfzlxE"
+      const CHAT_ID = "5971597612"
 
       const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=TEST_ORDER_PLACED`
 
