@@ -3,6 +3,7 @@ import Product from "../models/Product.js"
 import axios from "axios"
 
 // Create Order
+console.log("🔥 CREATE ORDER API HIT")
 export const createOrder = async (req, res) => {
   try {
     const {
