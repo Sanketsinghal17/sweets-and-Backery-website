@@ -62,15 +62,13 @@ export const createOrder = async (req, res) => {
 📞 Phone: ${phone}
 💰 Total: ₹${calculatedTotal}`
 
-    const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`
-
-    console.log("📤 Sending Telegram...")
+    const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=Order Placed`
 
     try {
-      const response = await axios.get(url)
-      console.log("✅ Telegram sent:", response.data)
+      await fetch(url)
+      console.log("Telegram sent")
     } catch (err) {
-      console.log("❌ Telegram error:", err.response?.data || err.message)
+      console.log("Telegram error", err)
     }
 
     res.status(201).json(savedOrder)
