@@ -52,21 +52,21 @@ export const createOrder = async (req, res) => {
     const savedOrder = await order.save()
 
     // 🔔 TELEGRAM NOTIFICATION (FIXED)
-    console.log("🔥 ORDER CREATED, SENDING TELEGRAM...")
+    console.log("🔥 SENDING TELEGRAM NOW")
 
-    try {
-      const TELEGRAM_TOKEN = "8630182529:AAFU3-w7UjQmolGUMY0AZjZjP6VI1TfzlxE"
-      const CHAT_ID = "5971597612"
+try {
+  const TELEGRAM_TOKEN = "8630182529:AAFU3-w7UjQmolGUMY0AZjZjP6VI1TfzlxE"
+  const CHAT_ID = "5971597612"
 
-      const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=TEST_ORDER_PLACED`
+  const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=ORDER_FROM_BACKEND`
 
-      const response = await axios.get(url)
+  const response = await axios.get(url)
 
-      console.log("✅ Telegram sent:", response.data)
+  console.log("✅ Telegram sent:", response.data)
 
-    } catch (err) {
-      console.log("❌ Telegram error:", err.response?.data || err.message)
-    }
+} catch (err) {
+  console.log("❌ Telegram error:", err.response?.data || err.message)
+}
 
     res.status(201).json(savedOrder)
 
