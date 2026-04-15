@@ -49,7 +49,20 @@ export const createOrder = async (req, res) => {
 
     const savedOrder = await order.save()
 
+    // 🔔 TELEGRAM NOTIFICATION
+    await fetch(`https://api.telegram.org/bot8630182529:AAFU3-w7UjQmolGUMY0AZjZjP6VI1TfzlxE/getUpdates`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        chat_id: "5971597612",
+        text: `🛒 New Order!\n\n👤 Name: ${customerName}\n📞 Phone: ${phone}\n💰 Total: ₹${calculatedTotal}`
+      })
+    })
+
     res.status(201).json(savedOrder)
+
   } catch (error) {
     res.status(500).json({ message: error.message })
   }

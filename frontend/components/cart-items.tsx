@@ -37,7 +37,7 @@ export function CartItems() {
         <div className="flex flex-col gap-4">
           {items.map(({ product, quantity }) => (
             <div
-              key={product.id}
+              key={product._id}   // ✅ FIXED
               className="flex gap-4 rounded-xl border border-border bg-card p-4 md:gap-6"
             >
               <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg md:h-28 md:w-28">
@@ -49,47 +49,54 @@ export function CartItems() {
                   sizes="112px"
                 />
               </div>
+
               <div className="flex flex-1 flex-col justify-between">
                 <div>
                   <h3 className="font-serif text-base font-semibold text-card-foreground md:text-lg">
                     {product.name}
                   </h3>
                   <p className="mt-0.5 text-sm text-muted-foreground">
-                    {"Rs."}{product.price} each
+                    Rs.{product.price} each
                   </p>
                 </div>
+
                 <div className="flex items-center justify-between">
+                  {/* 🔥 Quantity Controls */}
                   <div className="flex items-center gap-2">
                     <button
-                      onClick={() =>
-                        updateQuantity(product.id, quantity - 1)
-                      }
-                      className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-muted"
-                      aria-label={`Decrease quantity of ${product.name}`}
+                      onClick={() => {
+                        if (quantity > 1) {
+                          updateQuantity(product._id, quantity - 1); // ✅ FIXED
+                        }
+                      }}
+                      className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-foreground hover:bg-muted"
                     >
                       <Minus className="h-3 w-3" />
                     </button>
+
                     <span className="w-8 text-center text-sm font-medium text-foreground">
                       {quantity}
                     </span>
+
                     <button
                       onClick={() =>
-                        updateQuantity(product.id, quantity + 1)
+                        updateQuantity(product._id, quantity + 1) // ✅ FIXED
                       }
-                      className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-muted"
-                      aria-label={`Increase quantity of ${product.name}`}
+                      className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-foreground hover:bg-muted"
                     >
                       <Plus className="h-3 w-3" />
                     </button>
                   </div>
+
+                  {/* 🔥 Price + Delete */}
                   <div className="flex items-center gap-4">
                     <span className="text-base font-bold text-foreground">
-                      {"Rs."}{product.price * quantity}
+                      Rs.{product.price * quantity}
                     </span>
+
                     <button
-                      onClick={() => removeItem(product.id)}
-                      className="text-muted-foreground transition-colors hover:text-destructive"
-                      aria-label={`Remove ${product.name} from cart`}
+                      onClick={() => removeItem(product._id)} // ✅ FIXED
+                      className="text-muted-foreground hover:text-destructive"
                     >
                       <Trash2 className="h-4 w-4" />
                     </button>
@@ -99,6 +106,8 @@ export function CartItems() {
             </div>
           ))}
         </div>
+
+        {/* Clear Cart */}
         <div className="mt-4 flex justify-end">
           <Button
             variant="ghost"
@@ -117,38 +126,41 @@ export function CartItems() {
           <h3 className="font-serif text-lg font-semibold text-card-foreground">
             Order Summary
           </h3>
+
           <div className="mt-4 flex flex-col gap-3">
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Subtotal</span>
               <span className="font-medium text-foreground">
-                {"Rs."}{totalPrice}
+                Rs.{totalPrice}
               </span>
             </div>
+
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Delivery</span>
               <span className="font-medium text-foreground">
                 {deliveryCharge === 0 ? "Free" : `Rs.${deliveryCharge}`}
               </span>
             </div>
+
             <div className="border-t border-border pt-3">
               <div className="flex justify-between">
                 <span className="font-semibold text-foreground">Total</span>
                 <span className="text-lg font-bold text-foreground">
-                  {"Rs."}{totalPrice + deliveryCharge}
+                  Rs.{totalPrice + deliveryCharge}
                 </span>
               </div>
             </div>
           </div>
+
+          {/* Checkout */}
           <Link href="/checkout" className="block mt-6">
-  <Button
-    size="lg"
-    className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
-  >
-    Proceed to Checkout
-  </Button>
-</Link>
+            <Button className="w-full bg-accent hover:bg-accent/90">
+              Proceed to Checkout
+            </Button>
+          </Link>
+
           <p className="mt-3 text-center text-xs text-muted-foreground">
-            {"Free delivery on orders over Rs.500"}
+            Free delivery on orders over Rs.500
           </p>
         </div>
       </div>

@@ -56,7 +56,15 @@ export function Navbar() {
 
         {/* Right side */}
         <div className="flex items-center gap-3">
-          <Link href="/login">
+          <Link href="/admin/login">
+            <Button
+              variant="ghost"
+              className="hidden text-sm font-medium text-muted-foreground hover:text-foreground md:inline-flex"
+            >
+            Admin
+            </Button>
+          </Link>
+          <Link href="/admin/login">
             <Button
               variant="ghost"
               size="sm"
