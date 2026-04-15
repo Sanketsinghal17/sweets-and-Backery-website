@@ -1,5 +1,6 @@
 import Order from "../models/Order.js"
 import Product from "../models/Product.js"
+import axios from "axios"
 
 // Create Order
 export const createOrder = async (req, res) => {
@@ -50,7 +51,7 @@ export const createOrder = async (req, res) => {
     const savedOrder = await order.save()
 
     // 🔔 TELEGRAM NOTIFICATION
-    await fetch(`https://api.telegram.org/bot8630182529:AAFU3-w7UjQmolGUMY0AZjZjP6VI1TfzlxE/getUpdates`, {
+    await fetch(`https://api.telegram.org/bot8630182529:AAFU3-w7UjQmolGUMY0AZjZjP6VI1TfzlxE/sendMessage`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
