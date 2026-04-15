@@ -54,6 +54,7 @@ export const createOrder = async (req, res) => {
     console.log("✅ Order saved")
 
     // 🔔 TELEGRAM NOTIFICATION
+    console.log("📤 Sending Telegram...")
     const TELEGRAM_TOKEN = "8630182529:AAFU3-w7UjQmolGUMY0AZjZjP6VI1TfzlxE"
     const CHAT_ID = "5971597612"
 
