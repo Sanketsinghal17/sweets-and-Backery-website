@@ -50,18 +50,34 @@ export const createOrder = async (req, res) => {
 
     const savedOrder = await order.save()
 
-    // 🔔 TELEGRAM NOTIFICATION
-    await axios.post(
-  `https://api.telegram.org/bot8630182529:AAFU3-w7UjQmolGUMY0AZjZjP6VI1TfzlxE/sendMessage`,
-  {
-    chat_id: "5971597612",
-    text: `🛒 New Order!\n\n👤 Name: ${customerName}\n📞 Phone: ${phone}\n💰 Total: ₹${calculatedTotal}`
-  }
-)
+    // 🔔 TELEGRAM NOTIFICATION (FIXED)
+    try {
+      const TELEGRAM_TOKEN = "8630182529:AAFU3-w7UjQmolGUMY0AZjZjP6VI1TfzlxE"
+      const CHAT_ID = "5971597612"
+
+      const response = await axios.post(
+        `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`,
+        {
+          chat_id: CHAT_ID,
+          text: `🛒 New Order!
+
+👤 Name: ${customerName}
+📞 Phone: ${phone}
+🏠 Address: ${address}
+💰 Total: ₹${calculatedTotal}`
+        }
+      )
+
+      console.log("Telegram sent:", response.data)
+
+    } catch (err) {
+      console.log("Telegram error:", err.response?.data || err.message)
+    }
 
     res.status(201).json(savedOrder)
 
   } catch (error) {
+    console.log("Order error:", error)
     res.status(500).json({ message: error.message })
   }
 }
@@ -79,7 +95,6 @@ export const getOrders = async (req, res) => {
 // Update Order Status
 export const updateOrderStatus = async (req, res) => {
   try {
-
     const { orderStatus } = req.body
 
     const order = await Order.findById(req.params.id)
@@ -90,18 +105,14 @@ export const updateOrderStatus = async (req, res) => {
 
     // If order cancelled → restore stock
     if (orderStatus === "Cancelled") {
-
       for (const item of order.orderItems) {
-
         const product = await Product.findById(item.product)
 
         if (product) {
           product.stock += item.quantity
           await product.save()
         }
-
       }
-
     }
 
     order.orderStatus = orderStatus
