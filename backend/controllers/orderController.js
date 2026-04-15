@@ -3,9 +3,10 @@ import Product from "../models/Product.js"
 import axios from "axios"
 
 // Create Order
-console.log("🔥 CREATE ORDER API HIT")
 export const createOrder = async (req, res) => {
   try {
+    console.log("🔥 CREATE ORDER API HIT")
+
     const {
       customerName,
       phone,
@@ -33,7 +34,6 @@ export const createOrder = async (req, res) => {
         })
       }
 
-      // Reduce stock
       product.stock -= item.quantity
       await product.save()
 
@@ -51,27 +51,32 @@ export const createOrder = async (req, res) => {
 
     const savedOrder = await order.save()
 
-    // 🔔 TELEGRAM NOTIFICATION (FIXED)
-    console.log("🔥 SENDING TELEGRAM NOW")
+    console.log("✅ Order saved")
 
-try {
-  const TELEGRAM_TOKEN = "8630182529:AAFU3-w7UjQmolGUMY0AZjZjP6VI1TfzlxE"
-  const CHAT_ID = "5971597612"
+    // 🔔 TELEGRAM NOTIFICATION
+    const TELEGRAM_TOKEN = "PASTE_YOUR_TOKEN_HERE"
+    const CHAT_ID = "PASTE_YOUR_CHAT_ID_HERE"
 
-  const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=ORDER_FROM_BACKEND`
+    const message = `🛒 New Order!
+👤 Name: ${customerName}
+📞 Phone: ${phone}
+💰 Total: ₹${calculatedTotal}`
 
-  const response = await axios.get(url)
+    const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`
 
-  console.log("✅ Telegram sent:", response.data)
+    console.log("📤 Sending Telegram...")
 
-} catch (err) {
-  console.log("❌ Telegram error:", err.response?.data || err.message)
-}
+    try {
+      const response = await axios.get(url)
+      console.log("✅ Telegram sent:", response.data)
+    } catch (err) {
+      console.log("❌ Telegram error:", err.response?.data || err.message)
+    }
 
     res.status(201).json(savedOrder)
 
   } catch (error) {
-    console.log("Order error:", error)
+    console.log("❌ Order error:", error)
     res.status(500).json({ message: error.message })
   }
 }
