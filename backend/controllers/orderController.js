@@ -51,27 +51,20 @@ export const createOrder = async (req, res) => {
     const savedOrder = await order.save()
 
     // 🔔 TELEGRAM NOTIFICATION (FIXED)
+    console.log("🔥 ORDER CREATED, SENDING TELEGRAM...")
+
     try {
-      const TELEGRAM_TOKEN = "8630182529:AAFU3-w7UjQmolGUMY0AZjZjP6VI1TfzlxE"
-      const CHAT_ID = "5971597612"
+      const TELEGRAM_TOKEN = "YOUR_BOT_TOKEN"
+      const CHAT_ID = "YOUR_CHAT_ID"
 
-      const response = await axios.post(
-        `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`,
-        {
-          chat_id: CHAT_ID,
-          text: `🛒 New Order!
+      const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=TEST_ORDER_PLACED`
 
-👤 Name: ${customerName}
-📞 Phone: ${phone}
-🏠 Address: ${address}
-💰 Total: ₹${calculatedTotal}`
-        }
-      )
+      const response = await axios.get(url)
 
-      console.log("Telegram sent:", response.data)
+      console.log("✅ Telegram sent:", response.data)
 
     } catch (err) {
-      console.log("Telegram error:", err.response?.data || err.message)
+      console.log("❌ Telegram error:", err.response?.data || err.message)
     }
 
     res.status(201).json(savedOrder)
