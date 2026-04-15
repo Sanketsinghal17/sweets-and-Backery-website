@@ -54,8 +54,8 @@ export const createOrder = async (req, res) => {
     console.log("✅ Order saved")
 
     // 🔔 TELEGRAM NOTIFICATION
-    const TELEGRAM_TOKEN = "PASTE_YOUR_TOKEN_HERE"
-    const CHAT_ID = "PASTE_YOUR_CHAT_ID_HERE"
+    const TELEGRAM_TOKEN = "8630182529:AAFU3-w7UjQmolGUMY0AZjZjP6VI1TfzlxE"
+    const CHAT_ID = "5971597612"
 
     const message = `🛒 New Order!
 👤 Name: ${customerName}
