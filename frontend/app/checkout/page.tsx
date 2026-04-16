@@ -26,7 +26,7 @@ export default function CheckoutPage(){
 
     // ✅ FIXED ORDER ITEMS
     const orderItems = items.map((item)=>({
-      product: item._id,   // ✅ FIXED (IMPORTANT)
+      product: item.product._id,   // ✅ FIXED (IMPORTANT)
       quantity: item.quantity
     }))
 
