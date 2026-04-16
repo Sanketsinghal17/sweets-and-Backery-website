@@ -14,8 +14,11 @@ async function fetchOrders(){
 
 try{
 
-const res = await fetch("http://localhost:5000/api/orders")
+const res = await fetch("https://sweets-and-backery-website.onrender.com/api/orders")
+
 const data = await res.json()
+
+console.log("ORDERS:", data) // ✅ DEBUG
 
 setOrders(data)
 
@@ -29,7 +32,7 @@ async function updateStatus(id,status){
 
 try{
 
-await fetch(`http://localhost:5000/api/orders/${id}/status`,{
+await fetch(`https://sweets-and-backery-website.onrender.com/api/orders/${id}/status`,{
 method:"PATCH",
 headers:{
 "Content-Type":"application/json"
@@ -59,6 +62,10 @@ Admin Orders
 
 <div className="space-y-6">
 
+{orders.length === 0 && (
+  <p>No orders found</p>
+)}
+
 {orders.map((order)=>(
 
 <div
@@ -81,26 +88,23 @@ className="border rounded-lg p-6 shadow-sm"
 <button
 onClick={()=>updateStatus(order._id,"Preparing")}
 className="bg-yellow-500 text-white px-3 py-1 rounded"
-
 >
-
-Preparing </button>
+Preparing
+</button>
 
 <button
 onClick={()=>updateStatus(order._id,"Delivered")}
 className="bg-green-600 text-white px-3 py-1 rounded"
-
 >
-
-Delivered </button>
+Delivered
+</button>
 
 <button
 onClick={()=>updateStatus(order._id,"Cancelled")}
 className="bg-red-600 text-white px-3 py-1 rounded"
-
 >
-
-Cancel </button>
+Cancel
+</button>
 
 </div>
 
