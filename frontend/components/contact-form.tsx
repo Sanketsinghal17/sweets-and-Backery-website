@@ -9,6 +9,11 @@ import { Textarea } from "@/components/ui/textarea";
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+
   if (submitted) {
     return (
       <div className="flex flex-col items-center justify-center py-10 text-center">
@@ -22,14 +27,45 @@ export function ContactForm() {
     );
   }
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      const res = await fetch(
+        "https://sweets-and-bakery-website.onrender.com/api/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            message: `Subject: ${subject}\n${message}`,
+          }),
+        }
+      );
+
+      if (!res.ok) {
+        alert("Failed to send message");
+        return;
+      }
+
+      setSubmitted(true);
+
+      // Clear fields
+      setName("");
+      setEmail("");
+      setSubject("");
+      setMessage("");
+    } catch (error) {
+      console.error(error);
+      alert("Server error");
+    }
+  }
+
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        setSubmitted(true);
-      }}
-      className="flex flex-col gap-5"
-    >
+    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
       <div className="grid gap-5 md:grid-cols-2">
         <div className="flex flex-col gap-2">
           <Label htmlFor="name" className="text-sm font-medium text-foreground">
@@ -40,6 +76,8 @@ export function ContactForm() {
             placeholder="Your name"
             required
             className="bg-background"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -55,9 +93,12 @@ export function ContactForm() {
             placeholder="you@example.com"
             required
             className="bg-background"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
       </div>
+
       <div className="flex flex-col gap-2">
         <Label
           htmlFor="subject"
@@ -70,8 +111,11 @@ export function ContactForm() {
           placeholder="What is this about?"
           required
           className="bg-background"
+          value={subject}
+          onChange={(e) => setSubject(e.target.value)}
         />
       </div>
+
       <div className="flex flex-col gap-2">
         <Label
           htmlFor="message"
@@ -85,8 +129,11 @@ export function ContactForm() {
           rows={5}
           required
           className="bg-background"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
         />
       </div>
+
       <Button
         type="submit"
         size="lg"
