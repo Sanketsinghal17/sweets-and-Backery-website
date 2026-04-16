@@ -28,8 +28,6 @@ app.get("/", (req, res) => {
   res.send("Backend is running")
 })
 
-const axios = require("axios")
-
 const TELEGRAM_TOKEN = "8630182529:AAFU3-w7UjQmolGUMY0AZjZjP6VI1TfzlxE"
 const TELEGRAM_CHAT_ID = "5971597612"
 
