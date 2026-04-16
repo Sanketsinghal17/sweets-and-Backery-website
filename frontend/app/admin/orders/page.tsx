@@ -14,7 +14,7 @@ async function fetchOrders(){
 
 try{
 
-const res = await fetch("http://localhost:5000/api/orders")
+const res = await fetch( "https://sweets-and-backery-website.onrender.com/api/orders")
 const data = await res.json()
 
 setOrders(data)
@@ -29,7 +29,7 @@ async function updateStatus(id,status){
 
 try{
 
-await fetch(`http://localhost:5000/api/orders/${id}/status`,{
+await fetch(`https://sweets-and-backery-website.onrender.com/api/orders/${id}/status`,{
 method:"PATCH",
 headers:{
 "Content-Type":"application/json"
