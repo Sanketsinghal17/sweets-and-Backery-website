@@ -12,8 +12,7 @@ import axios from "axios"
 dotenv.config()
 
 const app = express()
-const TELEGRAM_TOKEN = "8630182529:AAFU3-w7UjQmolGUMY0AZjZjP6VI1TfzlxE"
-const TELEGRAM_CHAT_ID = "5971597612"
+
 
 app.use(cors())
 app.use(express.json())
@@ -29,12 +28,15 @@ app.get("/", (req, res) => {
   res.send("Backend is running")
 })
 
+const axios = require("axios")
 
+const TELEGRAM_TOKEN = "8630182529:AAFU3-w7UjQmolGUMY0AZjZjP6VI1TfzlxE"
+const TELEGRAM_CHAT_ID = "5971597612"
 
 app.post("/api/contact", async (req, res) => {
   try {
-    console.log("CONTACT API HIT")   // ✅ ADD THIS
-    console.log(req.body)   // ✅ ADD THIS
+    console.log("CONTACT HIT")
+
     const { name, email, message } = req.body
 
     const text = `
@@ -58,8 +60,8 @@ ${message}
     res.json({ success: true })
 
   } catch (error) {
-    console.error("Contact error:", error)
-    res.status(500).json({ message: "Failed to send message" })
+    console.error(error)
+    res.status(500).json({ message: "Failed" })
   }
 })
 app.get("/api/test", (req, res) => {
