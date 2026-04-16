@@ -118,7 +118,7 @@ export function Navbar() {
             ))}
             <li>
               <Link
-                href="/login"
+                href="/admin/login"
                 className="block text-base font-medium text-foreground"
                 onClick={() => setMobileOpen(false)}
               >
