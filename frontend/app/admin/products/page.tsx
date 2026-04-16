@@ -1,10 +1,12 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 
 export default function AdminProducts(){
 
 const [products,setProducts] = useState([])
+const [authorized,setAuthorized] = useState(false)
 
 const [name,setName] = useState("")
 const [price,setPrice] = useState("")
@@ -13,10 +15,23 @@ const [category,setCategory] = useState("")
 const [description,setDescription] = useState("")
 const [image,setImage] = useState(null)
 const [editingProduct,setEditingProduct] = useState(null)
-const BASE_URL = "https://sweets-and-backery-website.onrender.com"
 
+const BASE_URL = "https://sweets-and-bakery-website.onrender.com"
+
+const router = useRouter()
+
+// 🔐 ADMIN PROTECTION
 useEffect(()=>{
+
+const isAdmin = localStorage.getItem("admin")
+
+if(!isAdmin){
+router.push("/admin/login")
+}else{
+setAuthorized(true)
 fetchProducts()
+}
+
 },[])
 
 async function fetchProducts(){
@@ -28,7 +43,7 @@ setProducts(data)
 
 }
 
-// ➕ ADD PRODUCT (with image upload)
+// ➕ ADD PRODUCT
 async function addProduct(){
 
 const formData = new FormData()
@@ -47,9 +62,6 @@ await fetch(`${BASE_URL}/api/products`,{
 method:"POST",
 body:formData
 })
-
-await fetchProducts()
-setTimeout(fetchProducts, 500)
 
 resetForm()
 fetchProducts()
@@ -116,14 +128,36 @@ setImage(null)
 setEditingProduct(null)
 }
 
+// 🚪 LOGOUT
+function handleLogout(){
+localStorage.removeItem("admin")
+router.push("/admin/login")
+}
+
+// ⛔ BLOCK UNTIL AUTH CHECK
+if(!authorized){
+return null
+}
+
 return(
 
 <div className="max-w-6xl mx-auto py-20">
 
-<h1 className="text-3xl font-bold mb-10">
+{/* HEADER */}
+<div className="flex justify-between items-center mb-10">
+<h1 className="text-3xl font-bold">
 Manage Products
 </h1>
 
+<button
+onClick={handleLogout}
+className="bg-red-600 text-white px-4 py-2 rounded"
+>
+Logout
+</button>
+</div>
+
+{/* FORM */}
 <div className="border p-6 rounded mb-10">
 
 <h2 className="text-xl font-semibold mb-6">
@@ -180,6 +214,7 @@ className="bg-black text-white px-6 py-2 rounded"
 
 </div>
 
+{/* PRODUCT LIST */}
 <div className="space-y-4">
 
 {products.map((product)=>(
@@ -229,7 +264,6 @@ Delete
 </div>
 
 </div>
-
 ))}
 
 </div>
