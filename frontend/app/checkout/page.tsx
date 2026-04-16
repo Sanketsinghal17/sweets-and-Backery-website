@@ -26,10 +26,10 @@ export default function CheckoutPage(){
 
     // ✅ FIXED ORDER ITEMS
     const orderItems = items.map((item)=>({
-      product: item.product._id,   // ✅ FIXED (IMPORTANT)
-      quantity: item.quantity
+    product: item.product?._id || item._id,   // ✅ FIX
+    quantity: item.quantity
     }))
-
+    
     try{
 
       const res = await fetch("https://sweets-and-backery-website.onrender.com/api/orders",{
