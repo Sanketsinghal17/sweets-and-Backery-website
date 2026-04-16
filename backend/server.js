@@ -32,6 +32,8 @@ const TELEGRAM_CHAT_ID = "5971597612"
 
 app.post("/api/contact", async (req, res) => {
   try {
+    console.log("CONTACT API HIT")   // ✅ ADD THIS
+    console.log(req.body)   // ✅ ADD THIS
     const { name, email, message } = req.body
 
     const text = `
