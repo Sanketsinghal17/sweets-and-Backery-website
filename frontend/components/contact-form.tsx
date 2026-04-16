@@ -32,7 +32,7 @@ export function ContactForm() {
 
     try {
       const res = await fetch(
-        "https://sweets-and-bakery-website.onrender.com/api/contact",
+        "https://sweets-and-backery-website.onrender.com/api/contact", // ✅ FIXED URL
         {
           method: "POST",
           headers: {
@@ -41,7 +41,8 @@ export function ContactForm() {
           body: JSON.stringify({
             name,
             email,
-            message: `Subject: ${subject}\n${message}`,
+            subject, // ✅ send separately
+            message,
           }),
         }
       );
@@ -53,11 +54,11 @@ export function ContactForm() {
 
       setSubmitted(true);
 
-      // Clear fields
       setName("");
       setEmail("");
       setSubject("");
       setMessage("");
+
     } catch (error) {
       console.error(error);
       alert("Server error");
@@ -80,11 +81,9 @@ export function ContactForm() {
             onChange={(e) => setName(e.target.value)}
           />
         </div>
+
         <div className="flex flex-col gap-2">
-          <Label
-            htmlFor="email"
-            className="text-sm font-medium text-foreground"
-          >
+          <Label htmlFor="email" className="text-sm font-medium text-foreground">
             Email
           </Label>
           <Input
@@ -100,10 +99,7 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <Label
-          htmlFor="subject"
-          className="text-sm font-medium text-foreground"
-        >
+        <Label htmlFor="subject" className="text-sm font-medium text-foreground">
           Subject
         </Label>
         <Input
@@ -117,10 +113,7 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <Label
-          htmlFor="message"
-          className="text-sm font-medium text-foreground"
-        >
+        <Label htmlFor="message" className="text-sm font-medium text-foreground">
           Message
         </Label>
         <Textarea
