@@ -1,9 +1,10 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 
 export default function AdminProducts(){
-
+const router = useRouter()
 const [products,setProducts] = useState([])
 
 const [name,setName] = useState("")
@@ -14,6 +15,14 @@ const [description,setDescription] = useState("")
 const [image,setImage] = useState(null)
 const [editingProduct,setEditingProduct] = useState(null)
 const BASE_URL = "https://sweets-and-backery-website.onrender.com"
+
+useEffect(() => {
+    const isAdmin = localStorage.getItem("admin")
+  
+    if (!isAdmin) {
+      router.push("/admin/login")
+    }
+  }, [])
 
 useEffect(()=>{
 fetchProducts()
