@@ -5,6 +5,7 @@ import dotenv from "dotenv"
 import productRoutes from "./routes/productRoutes.js"
 import orderRoutes from "./routes/orderRoutes.js"
 import path from "path"
+import axios from "axios"
 
 
 
@@ -24,6 +25,39 @@ app.use((req, res) => {
 
 app.get("/", (req, res) => {
   res.send("Backend is running")
+})
+
+const TELEGRAM_TOKEN = "8630182529:AAFU3-w7UjQmolGUMY0AZjZjP6VI1TfzlxE"
+const TELEGRAM_CHAT_ID = "5971597612"
+
+app.post("/api/contact", async (req, res) => {
+  try {
+    const { name, email, message } = req.body
+
+    const text = `
+📩 NEW CONTACT MESSAGE
+
+👤 Name: ${name}
+📧 Email: ${email}
+
+💬 Message:
+${message}
+    `
+
+    await axios.post(
+      `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`,
+      {
+        chat_id: TELEGRAM_CHAT_ID,
+        text,
+      }
+    )
+
+    res.json({ success: true })
+
+  } catch (error) {
+    console.error("Contact error:", error)
+    res.status(500).json({ message: "Failed to send message" })
+  }
 })
 app.get("/api/test", (req, res) => {
   res.send("API working ✅")
