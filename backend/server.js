@@ -35,13 +35,14 @@ app.post("/api/contact", async (req, res) => {
   try {
     console.log("CONTACT HIT")
 
-    const { name, email, message } = req.body
+    const { name, email, subject,  message } = req.body
 
     const text = `
 📩 NEW CONTACT MESSAGE
 
 👤 Name: ${name}
 📧 Email: ${email}
+📌 Subject: ${subject}
 
 💬 Message:
 ${message}
