@@ -1,12 +1,52 @@
 "use client"
 
 import Link from "next/link"
+import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 
 export default function AdminDashboard(){
+
+const [authorized,setAuthorized] = useState(false)
+
+const router = useRouter()
+
+// 🔐 ADMIN PROTECTION
+useEffect(()=>{
+
+const isAdmin = localStorage.getItem("admin")
+
+if(!isAdmin){
+router.push("/admin/login")
+}else{
+setAuthorized(true)
+}
+
+},[])
+
+// 🚪 LOGOUT FUNCTION
+function handleLogout(){
+localStorage.removeItem("admin")
+router.push("/admin/login")
+}
+
+// ⛔ BLOCK UNTIL AUTH CHECK
+if(!authorized){
+return null
+}
 
 return(
 
 <div className="max-w-6xl mx-auto py-20">
+
+{/* 🔴 ONLY ADD THIS BUTTON (UI SAME OTHERWISE) */}
+<div className="flex justify-end mb-4">
+<button
+onClick={handleLogout}
+className="bg-red-600 text-white px-4 py-2 rounded"
+>
+Logout
+</button>
+</div>
 
 <h1 className="text-4xl font-bold mb-10">Admin Dashboard</h1>
 
