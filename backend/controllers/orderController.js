@@ -2,11 +2,8 @@ import Order from "../models/Order.js"
 import Product from "../models/Product.js"
 import axios from "axios"
 
-// Create Order
 export const createOrder = async (req, res) => {
   try {
-    console.log("🔥 CREATE ORDER API HIT")
-
     const {
       customerName,
       phone,
@@ -20,6 +17,8 @@ export const createOrder = async (req, res) => {
     }
 
     let calculatedTotal = 0
+
+    let itemsText = ""
 
     for (const item of orderItems) {
       const product = await Product.findById(item.product)
@@ -38,6 +37,8 @@ export const createOrder = async (req, res) => {
       await product.save()
 
       calculatedTotal += product.price * item.quantity
+
+      itemsText += `• ${product.name} x ${item.quantity}\n`
     }
 
     const order = new Order({
@@ -51,31 +52,35 @@ export const createOrder = async (req, res) => {
 
     const savedOrder = await order.save()
 
-    console.log("✅ Order saved")
-
     // 🔔 TELEGRAM NOTIFICATION
-    console.log("📤 Sending Telegram...")
-    const TELEGRAM_TOKEN = "8630182529:AAFU3-w7UjQmolGUMY0AZjZjP6VI1TfzlxE"
+    const BOT_TOKEN = "8630182529:AAFU3-w7UjQmolGUMY0AZjZjP6VI1TfzlxE"
     const CHAT_ID = "5971597612"
 
-    const message = `🛒 New Order!
-    👤 Name: ${customerName}
-    📞 Phone: ${phone}
-    💰 Total: ₹${calculatedTotal}`
+    const message = `
+🛒 New Order Received!
 
-    const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=Order Placed`
+👤 Name: ${customerName}
+📞 Phone: ${phone}
+📍 Address: ${address}
 
-    try {
-      await fetch(url)
-      console.log("Telegram sent")
-    } catch (err) {
-      console.log("Telegram error", err)
-    }
+📦 Items:
+${itemsText}
+
+💰 Total: ₹${calculatedTotal}
+    `
+
+    await axios.post(
+      `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
+      {
+        chat_id: CHAT_ID,
+        text: message
+      }
+    )
 
     res.status(201).json(savedOrder)
 
   } catch (error) {
-    console.log("❌ Order error:", error)
+    console.error("ORDER ERROR:", error.message)
     res.status(500).json({ message: error.message })
   }
 }
