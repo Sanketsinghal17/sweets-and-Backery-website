@@ -59,9 +59,9 @@ export const createOrder = async (req, res) => {
     const CHAT_ID = "5971597612"
 
     const message = `🛒 New Order!
-👤 Name: ${customerName}
-📞 Phone: ${phone}
-💰 Total: ₹${calculatedTotal}`
+    👤 Name: ${customerName}
+    📞 Phone: ${phone}
+    💰 Total: ₹${calculatedTotal}`
 
     const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=Order Placed`
 
