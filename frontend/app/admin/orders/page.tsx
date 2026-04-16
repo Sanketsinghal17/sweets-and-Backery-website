@@ -6,6 +6,15 @@ import { useRouter } from "next/navigation"
 export default function AdminOrders(){
 
 const [orders,setOrders] = useState([])
+const router = useRouter()
+
+useEffect(() => {
+  const isAdmin = localStorage.getItem("admin")
+
+  if (!isAdmin) {
+    router.push("/admin/login")
+  }
+}, [])
 
 useEffect(()=>{
 fetchOrders()
