@@ -103,7 +103,10 @@ ${itemsText}
     )
 
     // ✅ RESPONSE
-    res.status(201).json(savedOrder)
+    res.status(201).json({
+    ...savedOrder.toObject(),
+    orderItemsWithDetails
+    })
 
   } catch (error) {
     console.error("ORDER ERROR:", error.message)
