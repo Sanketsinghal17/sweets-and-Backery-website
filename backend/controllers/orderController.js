@@ -37,6 +37,14 @@ export const createOrder = async (req, res) => {
       await product.save()
 
       calculatedTotal += product.price * item.quantity
+      // 🚚 DELIVERY LOGIC
+      let deliveryCharge = 0
+
+      if (calculatedTotal < 500) {
+        deliveryCharge = 50
+      }
+
+      const finalTotal = calculatedTotal + deliveryCharge
 
       itemsText += `• ${product.name} x ${item.quantity}\n`
     }
@@ -46,7 +54,8 @@ export const createOrder = async (req, res) => {
       phone,
       address,
       orderItems,
-      totalAmount: calculatedTotal,
+      totalAmount: finalTotal,
+      deliveryCharge: deliveryCharge,
       paymentMethod
     })
 
@@ -66,7 +75,9 @@ export const createOrder = async (req, res) => {
 📦 Items:
 ${itemsText}
 
-💰 Total: ₹${calculatedTotal}
+💰 Subtotal: ₹${calculatedTotal}
+🚚 Delivery: ₹${deliveryCharge}
+💵 Total: ₹${finalTotal}
     `
 
     await axios.post(

@@ -87,7 +87,17 @@ className="border rounded-lg p-6 shadow-sm"
 <p><b>Phone:</b> {order.phone}</p>
 <p><b>Address:</b> {order.address}</p>
 
-<p className="mt-3"><b>Total:</b> Rs.{order.totalAmount}</p>
+<p className="mt-3">
+  <b>Subtotal:</b> Rs.{order.totalAmount - (order.deliveryCharge || 0)}
+</p>
+
+<p>
+  <b>Delivery:</b> Rs.{order.deliveryCharge || 0}
+</p>
+
+<p className="text-lg font-bold">
+  Total: Rs.{order.totalAmount}
+</p>
 
 <p className="mt-2">
 <b>Status:</b> {order.orderStatus}
