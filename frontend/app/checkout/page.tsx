@@ -54,9 +54,6 @@ export default function CheckoutPage(){
       }
 
       clearCart()
-
-      alert("Order placed successfully!")
-
       // ✅ OPTIONAL (for next step)
       window.location.href = `/order-success?name=${name}&total=${data.totalAmount}`
     }catch(error){
