@@ -5,6 +5,7 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
+    domains: ["sweets-and-backery-website.onrender.com"], // ✅ ADD THIS
   },
 }
 

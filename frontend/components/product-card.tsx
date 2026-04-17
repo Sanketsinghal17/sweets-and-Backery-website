@@ -13,7 +13,11 @@ export function ProductCard({ product }: { product: Product }) {
     <article className="group overflow-hidden rounded-xl border border-border bg-card transition-shadow duration-300 hover:shadow-lg">
       <div className="relative aspect-square overflow-hidden">
         <Image
-          src={product.image}
+          src={
+          product.image?.startsWith("/uploads")
+          ? `https://sweets-and-backery-website.onrender.com${product.image}`
+          : product.image
+          }
           alt={product.name}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"

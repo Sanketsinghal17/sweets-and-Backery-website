@@ -209,10 +209,11 @@ className="border p-4 rounded flex justify-between items-center"
 {product.image && (
 <img
 src={
-  product.image?.startsWith("/uploads")
-    ? `${BASE_URL}${product.image}`
-    : product.image
-}
+    product.image?.startsWith("/uploads")
+      ? `https://sweets-and-backery-website.onrender.com${product.image}`
+      : product.image
+  }
+  alt={product.name}
 className="w-16 h-16 object-cover rounded"
 />
 )}
