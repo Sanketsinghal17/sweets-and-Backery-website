@@ -160,12 +160,18 @@ onChange={(e)=>setStock(e.target.value)}
 className="border p-2 w-full mb-3"
 />
 
-<input
-placeholder="Category"
-value={category}
-onChange={(e)=>setCategory(e.target.value)}
-className="border p-2 w-full mb-3"
-/>
+<select
+  value={category}
+  onChange={(e) => setCategory(e.target.value)}
+  className="border p-2 w-full mb-3"
+>
+  <option value="">Select Category</option>
+  <option value="whole-cakes">Whole Cakes</option>
+  <option value="premium-cakes">Premium Cakes</option>
+  <option value="special-cakes">Special Cakes</option>
+  <option value="slices">Slices & Puddings</option>
+  <option value="snacks">Snacks</option>
+</select>
 
 <textarea
 placeholder="Description"
