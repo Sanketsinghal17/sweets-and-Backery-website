@@ -78,6 +78,11 @@ Admin Orders
 
 {orders.map((order) => {
 
+  const items = typeof order.orderItems === "string"
+  ? JSON.parse(order.orderItems)
+  : order.orderItems
+
+
   // ✅ Calculate subtotal from items
   const items = typeof order.orderItems === "string"
   ? JSON.parse(order.orderItems)
@@ -104,6 +109,20 @@ Admin Orders
       <p><b>Name:</b> {order.customerName}</p>
       <p><b>Phone:</b> {order.phone}</p>
       <p><b>Address:</b> {order.address}</p>
+
+      <div className="mt-3">
+        <b>Items:</b>
+        <ul className="list-disc ml-5 mt-2">
+          {items.map((item, index) => {
+            const price = item.price || item.product?.price || 0
+            return (
+              <li key={index}>
+                {item.name || item.product?.name} x {item.quantity} (Rs.{price})
+              </li>
+            )
+          })}
+        </ul>
+      </div>
 
       <p className="mt-3">
         <b>Subtotal:</b> Rs.{subtotal}
