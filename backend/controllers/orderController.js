@@ -37,17 +37,16 @@ export const createOrder = async (req, res) => {
       await product.save()
 
       calculatedTotal += product.price * item.quantity
-      // 🚚 DELIVERY LOGIC
-      let deliveryCharge = 0
-
-      if (calculatedTotal < 500) {
-        deliveryCharge = 50
-      }
-
-      const finalTotal = calculatedTotal + deliveryCharge
-
       itemsText += `• ${product.name} x ${item.quantity}\n`
     }
+    // 🚚 DELIVERY LOGIC
+    let deliveryCharge = 0
+
+    if (calculatedTotal < 500) {
+      deliveryCharge = 50
+    }
+
+    const finalTotal = calculatedTotal + deliveryCharge
 
     const order = new Order({
       customerName,
