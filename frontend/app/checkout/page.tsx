@@ -46,16 +46,19 @@ export default function CheckoutPage(){
         })
       })
 
+      const data = await res.json()   // ✅ ADD THIS LINE
+
       if(!res.ok){
-        const data = await res.json()
-        alert(data.message || "Order failed")
-        return
+      alert(data.message || "Order failed")
+      return
       }
 
       clearCart()
 
       alert("Order placed successfully!")
 
+      // ✅ OPTIONAL (for next step)
+      window.location.href = `/order-success?name=${name}&total=${data.totalAmount}`
     }catch(error){
       console.error(error)
       alert("Server error")
