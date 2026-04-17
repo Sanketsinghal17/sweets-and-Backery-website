@@ -54,13 +54,17 @@ app.post("/api/contact", async (req, res) => {
 ${message}
     `
 
-    await axios.post(
-      `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`,
-      {
-        chat_id: TELEGRAM_CHAT_ID,
-        text,
-      }
-    )
+    try {
+      await axios.post(
+        `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
+        {
+          chat_id: CHAT_ID,
+          text: message
+        }
+      )
+    } catch (err) {
+      console.error("Telegram failed:", err.message)
+    }
 
     res.json({ success: true })
 
