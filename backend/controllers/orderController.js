@@ -57,7 +57,7 @@ export const createOrder = async (req, res) => {
     let deliveryCharge = 0
 
     if (calculatedTotal < 500) {
-      deliveryCharge = 50   // ✅ FIXED (keep same everywhere)
+      deliveryCharge = 30   // ✅ FIXED (keep same everywhere)
     }
 
     const finalTotal = calculatedTotal + deliveryCharge
