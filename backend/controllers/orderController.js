@@ -19,7 +19,7 @@ export const createOrder = async (req, res) => {
     let calculatedTotal = 0
     let itemsText = ""
 
-    // ✅ NEW ARRAY FOR INVOICE
+    // ✅ THIS WILL BE SAVED IN DB
     let orderItemsWithDetails = []
 
     for (const item of orderItems) {
@@ -35,48 +35,49 @@ export const createOrder = async (req, res) => {
         })
       }
 
-      // Reduce stock
+      // 🔻 reduce stock
       product.stock -= item.quantity
       await product.save()
 
-      // Calculate total
+      // 🔻 calculate subtotal
       calculatedTotal += product.price * item.quantity
 
-      // Telegram items text
+      // 🔻 telegram text
       itemsText += `• ${product.name} x ${item.quantity}\n`
 
-      // ✅ ADD THIS FOR INVOICE
+      // ✅ IMPORTANT: STORE FULL DETAILS
       orderItemsWithDetails.push({
+        product: product._id,
         name: product.name,
         price: product.price,
         quantity: item.quantity
       })
     }
 
-    // 🚚 DELIVERY LOGIC (KEEP CONSISTENT EVERYWHERE)
+    // 🚚 DELIVERY LOGIC
     let deliveryCharge = 0
-
     if (calculatedTotal < 500) {
-      deliveryCharge = 30   // ✅ FIXED (keep same everywhere)
+      deliveryCharge = 30
     }
 
     const finalTotal = calculatedTotal + deliveryCharge
 
+    // ✅ SAVE CORRECT DATA IN DB
     const order = new Order({
       customerName,
       phone,
       address,
-      orderItems,
+      orderItems: orderItemsWithDetails,   // ✅ FIXED HERE
       totalAmount: finalTotal,
-      deliveryCharge: deliveryCharge,
+      deliveryCharge,
       paymentMethod
     })
 
     const savedOrder = await order.save()
 
-    // 🔔 TELEGRAM NOTIFICATION
-    const BOT_TOKEN = "8630182529:AAFU3-w7UjQmolGUMY0AZjZjP6VI1TfzlxE"
-    const CHAT_ID = "5971597612"
+    // 🔔 TELEGRAM
+    const BOT_TOKEN = ""
+    const CHAT_ID = ""
 
     const message = `
 🛒 New Order Received!
@@ -101,18 +102,14 @@ ${itemsText}
       }
     )
 
-    // ✅ UPDATED RESPONSE (VERY IMPORTANT)
-    res.status(201).json({
-      ...savedOrder.toObject(),
-      orderItemsWithDetails
-    })
+    // ✅ RESPONSE
+    res.status(201).json(savedOrder)
 
   } catch (error) {
     console.error("ORDER ERROR:", error.message)
     res.status(500).json({ message: error.message })
   }
 }
-
 // Get All Orders
 export const getOrders = async (req, res) => {
   try {
