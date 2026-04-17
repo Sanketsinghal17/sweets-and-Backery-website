@@ -53,9 +53,9 @@ function OrderContent(){
       subtotal += itemTotal
 
       doc.text(item.name, 20, y)
-      doc.text(String(item.quantity), 110, y)
-      doc.text(`₹${item.price}`, 130, y)
-      doc.text(`₹${itemTotal}`, 160, y)
+      doc.text(String(item.quantity), 110, y,{ align: "right" })
+      doc.text("₹" + item.price.toString(), 130, y,{ align: "right" })
+      doc.text("₹" + itemTotal.toString(), 160, y)
 
       y += 10
     })
@@ -65,23 +65,23 @@ function OrderContent(){
     y += 10
 
     // SUBTOTAL
-    doc.text(`Subtotal: ₹${subtotal}`, 130, y)
+    doc.text("Subtotal: ₹" + subtotal.toString(), 130, y)
     y += 10
 
     // DELIVERY
-    doc.text(`Delivery: ₹${delivery}`, 130, y)
+    doc.text("Delivery: ₹" + delivery.toString(), 130, y)
     y += 10
 
     // FINAL TOTAL
     doc.setFontSize(14)
-    doc.text(`Total: ₹${total}`, 130, y)
+    doc.text("Total: ₹" + total.toString(), 130, y)
 
     y += 20
 
     // FOOTER
     doc.setFontSize(11)
     doc.text("Thank you for your order!", 20, y)
-    doc.text("Visit Again ❤️", 20, y + 8)
+    // doc.text("Visit Again ❤️", 20, y + 8)
 
     doc.save("invoice.pdf")
   }
