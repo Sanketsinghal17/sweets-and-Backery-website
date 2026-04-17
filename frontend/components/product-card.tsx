@@ -10,9 +10,10 @@ export function ProductCard({ product }: { product: Product }) {
 
   // ✅ FIX IMAGE URL
   const imageUrl = product.image?.startsWith("/uploads")
-    ? `https://sweets-and-backery-website.onrender.com${product.image}`
-    : product.image;
-
+  ? `https://sweets-and-backery-website.onrender.com${product.image}`
+  : product.image?.startsWith("/images")
+  ? product.image   // ✅ static images
+  : product.image
   return (
     <article className="group overflow-hidden rounded-xl border border-border bg-card transition-shadow duration-300 hover:shadow-lg">
       
