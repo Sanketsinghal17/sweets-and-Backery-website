@@ -1,8 +1,9 @@
 "use client"
 
+import { Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 
-export default function OrderSuccess(){
+function OrderContent(){
 
   const params = useSearchParams()
 
@@ -25,5 +26,13 @@ export default function OrderSuccess(){
       </p>
 
     </div>
+  )
+}
+
+export default function OrderSuccess(){
+  return(
+    <Suspense fallback={<p className="text-center py-20">Loading...</p>}>
+      <OrderContent />
+    </Suspense>
   )
 }
