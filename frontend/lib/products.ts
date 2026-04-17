@@ -335,7 +335,14 @@ export async function getProductsByCategory(category: string) {
 
   if (category === "all") return products
 
-  return products.filter((p: any) => p.category === category)
+  return products.filter((p: any) => {
+  if (category === "all") return true;
+
+  return (
+    p.category?.toLowerCase().replace(/\s+/g, "-") ===
+    category?.toLowerCase().replace(/\s+/g, "-")
+  );
+});
 }
 
 export async function getFeaturedProducts() {
