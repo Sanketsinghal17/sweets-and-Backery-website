@@ -43,7 +43,7 @@ export const createOrder = async (req, res) => {
     let deliveryCharge = 0
 
     if (calculatedTotal < 500) {
-      deliveryCharge = 50
+      deliveryCharge = 30
     }
 
     const finalTotal = calculatedTotal + deliveryCharge
