@@ -335,7 +335,11 @@ export async function getProductsByCategory(category: string) {
 
   if (category === "all") return products
 
-  return products.filter((p: any) => p.category === category)
+  return products.filter(
+  (p: any) =>
+    p.category?.toLowerCase().replace(/\s+/g, "-") ===
+    category?.toLowerCase().replace(/\s+/g, "-")
+)
 }
 
 export async function getFeaturedProducts() {
