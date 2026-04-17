@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 
 export default function AdminProducts(){
+
 const router = useRouter()
 const [products,setProducts] = useState([])
 
@@ -14,116 +15,169 @@ const [category,setCategory] = useState("")
 const [description,setDescription] = useState("")
 const [image,setImage] = useState(null)
 const [editingProduct,setEditingProduct] = useState(null)
+
 const BASE_URL = "https://sweets-and-backery-website.onrender.com"
 
 useEffect(() => {
-    const isAdmin = localStorage.getItem("admin")
-  
-    if (!isAdmin) {
-      router.push("/admin/login")
-    }
-  }, [])
+  const isAdmin = localStorage.getItem("admin")
+  if (!isAdmin) {
+    router.push("/admin/login")
+  }
+}, [])
 
 useEffect(()=>{
-fetchProducts()
+  fetchProducts()
 },[])
 
 async function fetchProducts(){
-
-const res = await fetch(`${BASE_URL}/api/products`)
-const data = await res.json()
-
-setProducts(data)
-
+  const res = await fetch(`${BASE_URL}/api/products`)
+  const data = await res.json()
+  setProducts(data)
 }
 
-// ➕ ADD PRODUCT (with image upload)
+//////////////////////////////////////////////////
+// ➕ ADD PRODUCT
+//////////////////////////////////////////////////
+
 async function addProduct(){
 
-const formData = new FormData()
+  // ✅ FIX: validation
+  if (!category) {
+    alert("Please select category")
+    return
+  }
 
-formData.append("name", name)
-formData.append("price", price)
-formData.append("stock", stock)
-formData.append("category", category)
-formData.append("description", description)
+  if (!name || !price || !stock) {
+    alert("Please fill all fields")
+    return
+  }
 
-if(image){
-formData.append("image", image)
+  console.log("CATEGORY SENT:", category)
+
+  const formData = new FormData()
+
+  formData.append("name", name)
+  formData.append("price", price)
+  formData.append("stock", stock)
+  formData.append("category", category)
+  formData.append("description", description)
+
+  if(image){
+    formData.append("image", image)
+  }
+
+  try{
+    const res = await fetch(`${BASE_URL}/api/products`,{
+      method:"POST",
+      body:formData
+    })
+
+    const data = await res.json()
+
+    if(!res.ok){
+      alert(data.message || "Error adding product")
+      return
+    }
+
+    alert("Product added successfully ✅")
+
+    await fetchProducts()
+    resetForm()
+
+  }catch(error){
+    console.error(error)
+    alert("Server error")
+  }
 }
 
-await fetch(`${BASE_URL}/api/products`,{
-method:"POST",
-body:formData
-})
-
-await fetchProducts()
-setTimeout(fetchProducts, 500)
-
-resetForm()
-fetchProducts()
-
-}
-
+//////////////////////////////////////////////////
 // ❌ DELETE
+//////////////////////////////////////////////////
+
 async function deleteProduct(id){
-
-await fetch(`${BASE_URL}/api/products/${id}`,{
-method:"DELETE"
-})
-
-fetchProducts()
-
+  await fetch(`${BASE_URL}/api/products/${id}`,{
+    method:"DELETE"
+  })
+  fetchProducts()
 }
 
+//////////////////////////////////////////////////
 // ✏️ EDIT
+//////////////////////////////////////////////////
+
 function handleEdit(product){
-
-setEditingProduct(product)
-
-setName(product.name)
-setPrice(product.price)
-setStock(product.stock)
-setCategory(product.category || "")
-setDescription(product.description || "")
-
+  setEditingProduct(product)
+  setName(product.name)
+  setPrice(product.price)
+  setStock(product.stock)
+  setCategory(product.category || "")
+  setDescription(product.description || "")
 }
 
+//////////////////////////////////////////////////
 // 🔄 UPDATE
+//////////////////////////////////////////////////
+
 async function updateProduct(){
 
-const formData = new FormData()
+  if (!category) {
+    alert("Please select category")
+    return
+  }
 
-formData.append("name", name)
-formData.append("price", price)
-formData.append("stock", stock)
-formData.append("category", category)
-formData.append("description", description)
+  const formData = new FormData()
 
-if(image){
-formData.append("image", image)
+  formData.append("name", name)
+  formData.append("price", price)
+  formData.append("stock", stock)
+  formData.append("category", category)
+  formData.append("description", description)
+
+  if(image){
+    formData.append("image", image)
+  }
+
+  try{
+    const res = await fetch(`${BASE_URL}/api/products/${editingProduct._id}`,{
+      method:"PUT",
+      body:formData
+    })
+
+    const data = await res.json()
+
+    if(!res.ok){
+      alert(data.message || "Update failed")
+      return
+    }
+
+    alert("Product updated ✅")
+
+    resetForm()
+    fetchProducts()
+
+  }catch(error){
+    console.error(error)
+    alert("Server error")
+  }
 }
 
-await fetch(`${BASE_URL}/api/products/${editingProduct._id}`,{
-method:"PUT",
-body:formData
-})
-
-resetForm()
-fetchProducts()
-
-}
-
+//////////////////////////////////////////////////
 // 🔄 RESET FORM
+//////////////////////////////////////////////////
+
 function resetForm(){
-setName("")
-setPrice("")
-setStock("")
-setCategory("")
-setDescription("")
-setImage(null)
-setEditingProduct(null)
+  setName("")
+  setPrice("")
+  setStock("")
+  setCategory("")
+  setDescription("")
+  setImage(null)
+  setEditingProduct(null)
 }
+
+//////////////////////////////////////////////////
+// UI
+//////////////////////////////////////////////////
 
 return(
 
@@ -161,16 +215,16 @@ className="border p-2 w-full mb-3"
 />
 
 <select
-  value={category}
-  onChange={(e) => setCategory(e.target.value)}
-  className="border p-2 w-full mb-3"
+value={category}
+onChange={(e)=>setCategory(e.target.value)}
+className="border p-2 w-full mb-3"
 >
-  <option value="">Select Category</option>
-  <option value="whole-cakes">Whole Cakes</option>
-  <option value="premium-cakes">Premium Cakes</option>
-  <option value="special-cakes">Special Cakes</option>
-  <option value="slices">Slices & Puddings</option>
-  <option value="snacks">Snacks</option>
+<option value="">Select Category</option>
+<option value="whole-cakes">Whole Cakes</option>
+<option value="premium-cakes">Premium Cakes</option>
+<option value="special-cakes">Special Cakes</option>
+<option value="slices">Slices & Puddings</option>
+<option value="snacks">Snacks</option>
 </select>
 
 <textarea
@@ -209,11 +263,11 @@ className="border p-4 rounded flex justify-between items-center"
 {product.image && (
 <img
 src={
-    product.image?.startsWith("/uploads")
-      ? `https://sweets-and-backery-website.onrender.com${product.image}`
-      : product.image
-  }
-  alt={product.name}
+  product.image?.startsWith("/uploads")
+    ? `${BASE_URL}${product.image}`
+    : product.image
+}
+alt={product.name}
 className="w-16 h-16 object-cover rounded"
 />
 )}
@@ -222,6 +276,7 @@ className="w-16 h-16 object-cover rounded"
 <p className="font-semibold">{product.name}</p>
 <p>Price: Rs.{product.price}</p>
 <p>Stock: {product.stock}</p>
+<p>Category: {product.category}</p>
 </div>
 
 </div>
