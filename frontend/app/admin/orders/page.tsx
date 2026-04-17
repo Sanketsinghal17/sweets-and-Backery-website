@@ -79,10 +79,14 @@ Admin Orders
 {orders.map((order) => {
 
   // ✅ Calculate subtotal from items
-  const subtotal = order.orderItems.reduce(
-  (sum, item) => sum + (item.price || 0) * (item.quantity || 0),
-  0
-)
+  const items = typeof order.orderItems === "string"
+  ? JSON.parse(order.orderItems)
+  : order.orderItems
+
+  const subtotal = items.reduce((sum, item) => {
+  const price = item.price || item.product?.price || 0
+  return sum + price * (item.quantity || 0)
+  }, 0)
 
   // ✅ Delivery logic
   const delivery = subtotal < 500 ? 30 : 0
