@@ -10,7 +10,6 @@ function OrderContent(){
 
   const name = params.get("name")
   const total = Number(params.get("total"))
-  const delivery = Number(params.get("delivery")) || 0
 
   // ⚠️ For now using dummy items (we will upgrade later to real items)
   const items = JSON.parse(params.get("items") || "[]")
@@ -69,7 +68,9 @@ function OrderContent(){
     y += 10
 
     // DELIVERY
-    doc.text("Delivery: ₹" + delivery.toString(), 130, y)
+    const delivery = subtotal < 500 ? 30 : 0;
+
+    doc.text("Delivery: ₹" + delivery, 130, y)
     y += 10
 
     // FINAL TOTAL
