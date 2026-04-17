@@ -6,12 +6,18 @@ import productRoutes from "./routes/productRoutes.js"
 import orderRoutes from "./routes/orderRoutes.js"
 import path from "path"
 import axios from "axios"
+import fs from "fs"
 
 
 
 dotenv.config()
 
 const app = express()
+const uploadDir = "uploads"
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir)
+}
+
 
 
 app.use(cors())
