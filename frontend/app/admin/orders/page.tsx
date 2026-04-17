@@ -80,9 +80,9 @@ Admin Orders
 
   // ✅ Calculate subtotal from items
   const subtotal = order.orderItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  )
+  (sum, item) => sum + (item.price || 0) * (item.quantity || 0),
+  0
+)
 
   // ✅ Delivery logic
   const delivery = subtotal < 500 ? 30 : 0
