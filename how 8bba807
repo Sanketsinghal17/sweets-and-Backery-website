@@ -1,0 +1,77 @@
+[33mcc36413[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m fix uploads + path + 404
+[33m66e555d[m fix uploads + path + 404
+[33m07b834e[m fix issue
+[33ma4c130a[m fix issue
+[33mef57b7b[m fix uploads absolute path and route
+[33maae6b4a[m fix uploads absolute path and route
+[33m8ffcab0[m image upload fix
+[33m42492a9[m image upload fix
+[33m8bba807[m fix duplicates
+[33mb3e304c[m order UI fix
+[33mab14ea5[m delivery charge fix
+[33ma65b1a0[m delivery charge fix
+[33m6538400[m delivery charge fix
+[33m323784b[m delivery charge fix
+[33m03ca6d7[m delivery charge fix
+[33m1f2e510[m fix image upload issue
+[33mc8f57e8[m fix image upload issue
+[33m79b1bf0[m fix image upload issue
+[33m9d3360e[m fi upload folder issue
+[33m1e88c47[m Add producty fix
+[33m0fa5538[m Add producty fix
+[33m785ecbc[m Add producty fix
+[33m0fc3fdf[m Add producty fix
+[33m0380ca0[m Invoice UI fix
+[33meff0715[m delivery charge fix
+[33m570ff61[m invoice fix
+[33m15890e0[m invoice UI fix
+[33mdb71482[m invoice fix and delivery fix
+[33ma5d71ce[m invoice bill
+[33mc4e9ca9[m fix total calculation bug
+[33m1793a70[m invoice added
+[33m6985c96[m order success page fix
+[33m538c0b3[m order success page
+[33mfe55553[m total amount fix
+[33m9831164[m total fix
+[33m6ff74fe[m add subject in contact message
+[33mdb7add0[m fix contact form
+[33m54f843e[m fix contact route
+[33m7b5e4bd[m fix contact route position
+[33mc8d4e47[m fix contact route position
+[33md909584[m contact telegram fix
+[33m881160a[m contact telegram added
+[33m137c2c6[m contact telegram added
+[33md8915ae[m contact telegram added
+[33mca356ee[m admin product page protection
+[33mbd18b8c[m admin order page protection
+[33m603ae65[m admin login protection
+[33m5ae12bb[m admin login protection
+[33md0ec59c[m admin login protection
+[33md159ab0[m telegram fix
+[33m8cfea6f[m fis admin sign in
+[33m6e43c44[m fix build error
+[33m70f2fa5[m order page fix
+[33m0fe069b[m order page fix
+[33mf3ace92[m order page fix
+[33ma7b61d0[m order page fix
+[33mbdc6228[m checkout fix
+[33mcfa477c[m checkout fix
+[33mc02ad7c[m telegram fix
+[33m39f3f57[m telegram fix
+[33m42499d6[m final telegram fix
+[33m1ad211e[m final telegram fix
+[33m9868cd4[m final telegram fix
+[33mb151864[m force telegram debug
+[33m2810b3c[m force telegram debug
+[33m727921e[m force telegram debug
+[33mc4ff499[m force telegram debug
+[33me55b960[m fixed telegram using axios
+[33m7433fc7[m fixed telegram using axios
+[33m0a11579[m telegram notification update
+[33me54a689[m telegram notification added
+[33m6b460bd[m admin panel connected to backend
+[33m1c3a190[m admin panel connected to backend
+[33m24e2b13[m connect backend api
+[33m4bbc5e8[m fix routing issue
+[33ma9b1929[m debug route hit
+[33md6947ba[m initial commit
