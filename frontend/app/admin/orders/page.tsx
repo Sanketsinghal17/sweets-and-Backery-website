@@ -76,60 +76,75 @@ Admin Orders
   <p>No orders found</p>
 )}
 
-{orders.map((order)=>(
+{orders.map((order) => {
 
-<div
-key={order._id}
-className="border rounded-lg p-6 shadow-sm"
->
+  // ✅ Calculate subtotal from items
+  const subtotal = order.orderItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  )
 
-<p><b>Name:</b> {order.customerName}</p>
-<p><b>Phone:</b> {order.phone}</p>
-<p><b>Address:</b> {order.address}</p>
+  // ✅ Delivery logic
+  const delivery = subtotal < 500 ? 30 : 0
 
-<p className="mt-3">
-  <b>Subtotal:</b> Rs.{order.totalAmount - (order.deliveryCharge || 0)}
-</p>
+  // ✅ Final total
+  const finalTotal = subtotal + delivery
 
-<p>
-  <b>Delivery:</b> Rs.{order.deliveryCharge || 0}
-</p>
+  return (
 
-<p className="text-lg font-bold">
-  Total: Rs.{order.totalAmount}
-</p>
+    <div
+      key={order._id}
+      className="border rounded-lg p-6 shadow-sm"
+    >
 
-<p className="mt-2">
-<b>Status:</b> {order.orderStatus}
-</p>
+      <p><b>Name:</b> {order.customerName}</p>
+      <p><b>Phone:</b> {order.phone}</p>
+      <p><b>Address:</b> {order.address}</p>
 
-<div className="mt-4 flex gap-3">
+      <p className="mt-3">
+        <b>Subtotal:</b> Rs.{subtotal}
+      </p>
 
-<button
-onClick={()=>updateStatus(order._id,"Preparing")}
-className="bg-yellow-500 text-white px-3 py-1 rounded"
->
-Preparing
-</button>
+      <p>
+        <b>Delivery:</b> Rs.{delivery}
+      </p>
 
-<button
-onClick={()=>updateStatus(order._id,"Delivered")}
-className="bg-green-600 text-white px-3 py-1 rounded"
->
-Delivered
-</button>
+      <p className="text-lg font-bold">
+        Total: Rs.{finalTotal}
+      </p>
 
-<button
-onClick={()=>updateStatus(order._id,"Cancelled")}
-className="bg-red-600 text-white px-3 py-1 rounded"
->
-Cancel
-</button>
+      <p className="mt-2">
+        <b>Status:</b> {order.orderStatus}
+      </p>
 
-</div>
+      <div className="mt-4 flex gap-3">
 
-</div>
-))}
+        <button
+          onClick={() => updateStatus(order._id, "Preparing")}
+          className="bg-yellow-500 text-white px-3 py-1 rounded"
+        >
+          Preparing
+        </button>
+
+        <button
+          onClick={() => updateStatus(order._id, "Delivered")}
+          className="bg-green-600 text-white px-3 py-1 rounded"
+        >
+          Delivered
+        </button>
+
+        <button
+          onClick={() => updateStatus(order._id, "Cancelled")}
+          className="bg-red-600 text-white px-3 py-1 rounded"
+        >
+          Cancel
+        </button>
+
+      </div>
+
+    </div>
+  )
+})}
 
 </div>
 
