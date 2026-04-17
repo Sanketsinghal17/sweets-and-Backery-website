@@ -55,7 +55,7 @@ export default function CheckoutPage(){
 
       clearCart()
       // ✅ OPTIONAL (for next step)
-      window.location.href = `/order-success?name=${name}&total=${data.totalAmount}`
+      window.location.href = `/order-success?name=${name}&total=${data.totalAmount}&delivery=${data.deliveryCharge}&items=${encodeURIComponent(JSON.stringify(data.orderItemsWithDetails))}`
     }catch(error){
       console.error(error)
       alert("Server error")

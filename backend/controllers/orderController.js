@@ -17,8 +17,10 @@ export const createOrder = async (req, res) => {
     }
 
     let calculatedTotal = 0
-
     let itemsText = ""
+
+    // ✅ NEW ARRAY FOR INVOICE
+    let orderItemsWithDetails = []
 
     for (const item of orderItems) {
       const product = await Product.findById(item.product)
@@ -33,17 +35,29 @@ export const createOrder = async (req, res) => {
         })
       }
 
+      // Reduce stock
       product.stock -= item.quantity
       await product.save()
 
+      // Calculate total
       calculatedTotal += product.price * item.quantity
+
+      // Telegram items text
       itemsText += `• ${product.name} x ${item.quantity}\n`
+
+      // ✅ ADD THIS FOR INVOICE
+      orderItemsWithDetails.push({
+        name: product.name,
+        price: product.price,
+        quantity: item.quantity
+      })
     }
-    // 🚚 DELIVERY LOGIC
+
+    // 🚚 DELIVERY LOGIC (KEEP CONSISTENT EVERYWHERE)
     let deliveryCharge = 0
 
     if (calculatedTotal < 500) {
-      deliveryCharge = 30
+      deliveryCharge = 50   // ✅ FIXED (keep same everywhere)
     }
 
     const finalTotal = calculatedTotal + deliveryCharge
@@ -87,7 +101,11 @@ ${itemsText}
       }
     )
 
-    res.status(201).json(savedOrder)
+    // ✅ UPDATED RESPONSE (VERY IMPORTANT)
+    res.status(201).json({
+      ...savedOrder.toObject(),
+      orderItemsWithDetails
+    })
 
   } catch (error) {
     console.error("ORDER ERROR:", error.message)
