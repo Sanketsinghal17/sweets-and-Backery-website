@@ -78,16 +78,13 @@ Admin Orders
 
 {orders.map((order) => {
 
-  const items = typeof order.orderItems === "string"
-  ? JSON.parse(order.orderItems)
-  : order.orderItems
-
-
   // ✅ Calculate subtotal from items
   const items = typeof order.orderItems === "string"
   ? JSON.parse(order.orderItems)
   : order.orderItems
 
+
+  
   const subtotal = items.reduce((sum, item) => {
   const price = item.price || item.product?.price || 0
   return sum + price * (item.quantity || 0)
