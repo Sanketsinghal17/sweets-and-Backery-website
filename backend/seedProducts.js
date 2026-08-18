@@ -6,299 +6,384 @@ dotenv.config();
 
 const products = [
 
-/* WHOLE CAKES */
+  /* =========================
+     BENTO CAKES - 250 GM
+  ========================== */
 
-{
-name:"Chocolate Cream Cake",
-description:"Chocolate cream cake with smooth frosting",
-price:260,
-image:"/images/products/chocolate-cream-cake.jpg",
-category:"whole-cakes",
-weight:"500 gm"
-},
+  {
+    name: "Pineapple Bento Cake",
+    description: "Soft and creamy pineapple bento cake",
+    price: 300,
+    image: "/images/products/pineapple-cake.jpg",
+    category: "bento-cakes",
+    weight: "250 gm"
+  },
 
-{
-name:"Pineapple Cake",
-description:"Fresh pineapple cream cake",
-price:260,
-image:"/images/products/pineapple-cake.jpg",
-category:"whole-cakes",
-weight:"500 gm"
-},
+  {
+    name: "Strawberry Bento Cake",
+    description: "Fresh strawberry cream bento cake",
+    price: 300,
+    image: "/images/products/strawberry-cake.jpg",
+    category: "bento-cakes",
+    weight: "250 gm"
+  },
 
-{
-name:"Butterscotch Cake",
-description:"Butterscotch cake with caramel flavor",
-price:260,
-image:"/images/products/butterscotch-cake.jpg",
-category:"whole-cakes",
-weight:"500 gm"
-},
+  {
+    name: "Blueberry Bento Cake",
+    description: "Delicious blueberry cream bento cake",
+    price: 300,
+    image: "/images/products/blueberry-cake.jpg",
+    category: "bento-cakes",
+    weight: "250 gm"
+  },
 
-{
-name:"Strawberry Cake",
-description:"Fresh strawberry cake",
-price:260,
-image:"/images/products/strawberry-cake.jpg",
-category:"whole-cakes",
-weight:"500 gm"
-},
+  {
+    name: "Truffle Bento Cake",
+    description: "Rich chocolate truffle bento cake",
+    price: 350,
+    image: "/images/products/chocolate-truffle-cake.jpg",
+    category: "bento-cakes",
+    weight: "250 gm"
+  },
 
-{
-name:"Blueberry Cake",
-description:"Blueberry flavored cake",
-price:260,
-image:"/images/products/blueberry-cake.jpg",
-category:"whole-cakes",
-weight:"500 gm"
-},
 
-/* PREMIUM CAKES */
+  /* =========================
+     WHOLE CAKES - 500 GM
+  ========================== */
 
-{
-name:"Truffle Cake",
-description:"Rich chocolate truffle cake",
-price:350,
-image:"/images/products/truffle-cake.jpg",
-category:"premium-cakes",
-weight:"600 gm"
-},
+  {
+    name: "Strawberry Cake",
+    description: "Fresh strawberry cream cake",
+    price: 400,
+    image: "/images/products/strawberry-cake.jpg",
+    category: "whole-cakes",
+    weight: "500 gm"
+  },
 
-{
-name:"Dairymilk Cake",
-description:"Chocolate dairymilk cake",
-price:380,
-image:"/images/products/dairymilk-cake.jpg",
-category:"premium-cakes",
-weight:"600 gm"
-},
+  {
+    name: "Pineapple Cake",
+    description: "Fresh pineapple cream cake",
+    price: 400,
+    image: "/images/products/pineapple-cake.jpg",
+    category: "whole-cakes",
+    weight: "500 gm"
+  },
 
-{
-name:"Red Velvet Cake",
-description:"Classic red velvet cake",
-price:350,
-image:"/images/products/red-velvet-cake.jpg",
-category:"premium-cakes",
-weight:"600 gm"
-},
+  {
+    name: "Chocolate Cake",
+    description: "Rich and creamy chocolate cake",
+    price: 400,
+    image: "/images/products/chocolate-cream-cake.jpg",
+    category: "whole-cakes",
+    weight: "500 gm"
+  },
 
-{
-name:"Rasmalai Cake",
-description:"Rasmalai flavored cake",
-price:360,
-image:"/images/products/rasmalai-cake.jpg",
-category:"premium-cakes",
-weight:"600 gm"
-},
+  {
+    name: "Blueberry Cake",
+    description: "Delicious blueberry cream cake",
+    price: 400,
+    image: "/images/products/blueberry-cake.jpg",
+    category: "whole-cakes",
+    weight: "500 gm"
+  },
 
-{
-name:"White Forest Cake",
-description:"White chocolate forest cake",
-price:320,
-image:"/images/products/white-forest-cake.jpg",
-category:"premium-cakes",
-weight:"600 gm"
-},
+  {
+    name: "Butterscotch Cake",
+    description: "Butterscotch cake with caramel flavor",
+    price: 400,
+    image: "/images/products/butterscotch-cake.jpg",
+    category: "whole-cakes",
+    weight: "500 gm"
+  },
 
-{
-name:"Black Forest Cake",
-description:"Chocolate cherry forest cake",
-price:320,
-image:"/images/products/black-forest-cake.jpg",
-category:"premium-cakes",
-weight:"600 gm"
-},
 
-{
-name:"Fruit Cake",
-description:"Mixed fruit cream cake",
-price:360,
-image:"/images/products/fruit-cake.jpg",
-category:"premium-cakes",
-weight:"600 gm"
-},
+  /* =========================
+     PREMIUM CAKES - 600 GM
+  ========================== */
 
-{
-name:"Oreo Cake",
-description:"Oreo cookies cream cake",
-price:350,
-image:"/images/products/oreo-cake.jpg",
-category:"premium-cakes",
-weight:"600 gm"
-},
+  {
+    name: "Truffle Cake",
+    description: "Rich chocolate truffle cake",
+    price: 550,
+    image: "/images/products/chocolate-truffle-cake.jpg",
+    category: "premium-cakes",
+    weight: "600 gm",
+    featured: true
+  },
 
-/* SPECIAL CAKES */
+  {
+    name: "Fruit Cake",
+    description: "Fresh mixed fruit cream cake",
+    price: 550,
+    image: "/images/products/fruit-cake.jpg",
+    category: "premium-cakes",
+    weight: "600 gm"
+  },
 
-{
-name:"Special Pineapple Cake",
-price:320,
-image:"/images/products/pineapple-cake.jpg",
-category:"special-cakes",
-weight:"600 gm"
-},
+  {
+    name: "Red Velvet Cake",
+    description: "Classic red velvet cake with creamy frosting",
+    price: 550,
+    image: "/images/products/red-velvet-cake.jpg",
+    category: "premium-cakes",
+    weight: "600 gm",
+    featured: true
+  },
 
-{
-name:"Special Strawberry Cake",
-price:320,
-image:"/images/products/strawberry-cake.jpg",
-category:"special-cakes",
-weight:"600 gm"
-},
+  {
+    name: "Brown Velvet Cake",
+    description: "Rich brown velvet cake",
+    price: 500,
+    image: "/images/products/chocolate-brownie.jpg",
+    category: "premium-cakes",
+    weight: "600 gm"
+  },
 
-{
-name:"Special Blueberry Cake",
-price:320,
-image:"/images/products/blueberry-cake.jpg",
-category:"special-cakes",
-weight:"600 gm"
-},
+  {
+    name: "White Forest Cake",
+    description: "Creamy white forest cake",
+    price: 500,
+    image: "/images/products/white-forest-cake.jpg",
+    category: "premium-cakes",
+    weight: "600 gm"
+  },
 
-{
-name:"Special Butterscotch Cake",
-price:320,
-image:"/images/products/butterscotch-cake.jpg",
-category:"special-cakes",
-weight:"600 gm"
-},
+  {
+    name: "Rasmalai Cake",
+    description: "Delicious rasmalai flavored cake",
+    price: 500,
+    image: "/images/products/rasmalai-cake.jpg",
+    category: "premium-cakes",
+    weight: "600 gm"
+  },
 
-{
-name:"Special Black Forest Cake",
-price:320,
-image:"/images/products/black-forest-cake.jpg",
-category:"special-cakes",
-weight:"600 gm"
-},
+  {
+    name: "Blueberry Cake",
+    description: "Rich blueberry cream cake",
+    price: 500,
+    image: "/images/products/blueberry-cake.jpg",
+    category: "premium-cakes",
+    weight: "600 gm"
+  },
 
-{
-name:"Special Chocolate Cream Cake",
-price:320,
-image:"/images/products/chocolate-cream-cake.jpg",
-category:"special-cakes",
-weight:"600 gm"
-},
+  {
+    name: "Chocolate Cake",
+    description: "Rich chocolate cream cake",
+    price: 500,
+    image: "/images/products/chocolate-cream-cake.jpg",
+    category: "premium-cakes",
+    weight: "600 gm"
+  },
 
-/* SLICES */
+  {
+    name: "Black Forest Cake",
+    description: "Classic chocolate black forest cake",
+    price: 450,
+    image: "/images/products/black-forest-cake.jpg",
+    category: "premium-cakes",
+    weight: "600 gm"
+  },
 
-{
-name:"Truffle Slice",
-price:60,
-image:"/images/products/cake-slice.jpg",
-category:"slices-puddings"
-},
 
-{
-name:"Black Forest Slice",
-price:60,
-image:"/images/products/cake-slice.jpg",
-category:"slices-puddings"
-},
+  /* =========================
+     CAKES - 1 KG
+  ========================== */
 
-{
-name:"Pineapple Slice",
-price:50,
-image:"/images/products/cake-slice.jpg",
-category:"slices-puddings"
-},
+  {
+    name: "Truffle Cake",
+    description: "Rich chocolate truffle cake",
+    price: 900,
+    image: "/images/products/chocolate-truffle-cake.jpg",
+    category: "cakes-1kg",
+    weight: "1 kg",
+    featured: true
+  },
 
-{
-name:"Fruit Pudding",
-price:60,
-image:"/images/products/cake-slice.jpg",
-category:"slices-puddings"
-},
+  {
+    name: "Red Velvet Cake",
+    description: "Classic red velvet cake",
+    price: 900,
+    image: "/images/products/red-velvet-cake.jpg",
+    category: "cakes-1kg",
+    weight: "1 kg"
+  },
 
-{
-name:"Brownie Box",
-price:80,
-image:"/images/products/brownie-box.jpg",
-category:"slices-puddings"
-},
+  {
+    name: "Pineapple Cake",
+    description: "Fresh pineapple cream cake",
+    price: 700,
+    image: "/images/products/pineapple-cake.jpg",
+    category: "cakes-1kg",
+    weight: "1 kg"
+  },
 
-/* SNACKS */
+  {
+    name: "Chocolate Cake",
+    description: "Rich chocolate cream cake",
+    price: 700,
+    image: "/images/products/chocolate-cream-cake.jpg",
+    category: "cakes-1kg",
+    weight: "1 kg"
+  },
 
-{
-name:"Paneer Roll",
-price:70,
-image:"/images/products/paneer-roll.jpg",
-category:"snacks"
-},
+  {
+    name: "Blueberry Cake",
+    description: "Delicious blueberry cream cake",
+    price: 700,
+    image: "/images/products/blueberry-cake.jpg",
+    category: "cakes-1kg",
+    weight: "1 kg"
+  },
 
-{
-name:"Burger",
-price:70,
-image:"/images/products/burger.jpg",
-category:"snacks"
-},
+  {
+    name: "Strawberry Cake",
+    description: "Fresh strawberry cream cake",
+    price: 700,
+    image: "/images/products/strawberry-cake.jpg",
+    category: "cakes-1kg",
+    weight: "1 kg"
+  },
 
-{
-name:"Veg Parcel",
-price:70,
-image:"/images/products/paneer-roll.jpg",
-category:"snacks"
-},
+  {
+    name: "White Forest Cake",
+    description: "Creamy white forest cake",
+    price: 800,
+    image: "/images/products/white-forest-cake.jpg",
+    category: "cakes-1kg",
+    weight: "1 kg"
+  },
 
-{
-name:"Sandwich Pizza",
-price:70,
-image:"/images/products/sandwich-pizza.jpg",
-category:"snacks"
-},
+  {
+    name: "Butterscotch Cake",
+    description: "Butterscotch cake with caramel flavor",
+    price: 800,
+    image: "/images/products/butterscotch-cake.jpg",
+    category: "cakes-1kg",
+    weight: "1 kg"
+  },
 
-{
-name:"Paneer Kulcha",
-price:70,
-image:"/images/products/paneer-roll.jpg",
-category:"snacks"
-},
+  {
+    name: "Black Forest Cake",
+    description: "Classic black forest cake",
+    price: 800,
+    image: "/images/products/black-forest-cake.jpg",
+    category: "cakes-1kg",
+    weight: "1 kg"
+  },
 
-{
-name:"Hot Dog",
-price:60,
-image:"/images/products/hot-dog.jpg",
-category:"snacks"
-},
 
-{
-name:"Stuff Roll",
-price:70,
-image:"/images/products/paneer-roll.jpg",
-category:"snacks"
-},
+  /* =========================
+     CAKE PASTRIES
+  ========================== */
 
-{
-name:"Aloo Patty",
-price:30,
-image:"/images/products/burger.jpg",
-category:"snacks"
-},
+  {
+    name: "Truffle Pastry",
+    description: "Rich chocolate truffle pastry",
+    price: 80,
+    image: "/images/products/cake-slice.jpg",
+    category: "pastries"
+  },
 
-{
-name:"Paneer Patty",
-price:40,
-image:"/images/products/paneer-roll.jpg",
-category:"snacks"
-},
+  {
+    name: "Red Velvet Pastry",
+    description: "Soft and creamy red velvet pastry",
+    price: 80,
+    image: "/images/products/cake-slice.jpg",
+    category: "pastries"
+  },
 
-{
-name:"Veg Sandwich",
-price:40,
-image:"/images/products/sandwich-pizza.jpg",
-category:"snacks"
-}
+  {
+    name: "White Forest Pastry",
+    description: "Creamy white forest pastry",
+    price: 80,
+    image: "/images/products/cake-slice.jpg",
+    category: "pastries"
+  },
+
+  {
+    name: "Black Forest Pastry",
+    description: "Classic black forest pastry",
+    price: 80,
+    image: "/images/products/cake-slice.jpg",
+    category: "pastries"
+  },
+
+  {
+    name: "Pineapple Pastry",
+    description: "Fresh pineapple cream pastry",
+    price: 80,
+    image: "/images/products/cake-slice.jpg",
+    category: "pastries"
+  },
+
+  {
+    name: "Butterscotch Pastry",
+    description: "Delicious butterscotch cream pastry",
+    price: 80,
+    image: "/images/products/cake-slice.jpg",
+    category: "pastries"
+  },
+
+  {
+    name: "Doughnut",
+    description: "Freshly baked delicious doughnut",
+    price: 70,
+    image: "/images/products/cinnamon-rolls.jpg",
+    category: "pastries"
+  },
+
+
+  /* =========================
+     SNACKS
+  ========================== */
+
+  {
+    name: "Stuff Kulcha",
+    description: "Soft and delicious stuffed kulcha",
+    price: 80,
+    image: "/images/products/paneer-roll.jpg",
+    category: "snacks"
+  },
+
+  {
+    name: "Burger",
+    description: "Fresh veg burger with delicious fillings",
+    price: 80,
+    image: "/images/products/burger.jpg",
+    category: "snacks",
+    featured: true
+  },
+
+  {
+    name: "Cheese Roll",
+    description: "Crispy roll filled with cheesy goodness",
+    price: 100,
+    image: "/images/products/paneer-roll.jpg",
+    category: "snacks"
+  },
+
+  {
+    name: "Hotdog",
+    description: "Soft bun hotdog with delicious fillings",
+    price: 100,
+    image: "/images/products/hot-dog.jpg",
+    category: "snacks"
+  }
 
 ];
 
+
 async function seed() {
 
-await mongoose.connect(process.env.MONGO_URI);
+  await mongoose.connect(process.env.MONGO_URI);
 
-await Product.deleteMany();
+  await Product.deleteMany();
 
-await Product.insertMany(products);
+  await Product.insertMany(products);
 
-console.log("Products Inserted Successfully");
+  console.log("Products Inserted Successfully");
 
-process.exit();
+  process.exit();
 
 }
 

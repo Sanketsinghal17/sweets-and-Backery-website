@@ -1,35 +1,47 @@
 import Link from "next/link";
-import { CakeSlice, Star, Sparkles, Scissors, UtensilsCrossed } from "lucide-react";
+import {
+  CakeSlice,
+  Star,
+  Sparkles,
+  Heart,
+  UtensilsCrossed,
+} from "lucide-react";
 
 const categories = [
   {
     icon: CakeSlice,
+    name: "Bento Cakes",
+    description: "Cute 250 gm bento cakes starting at just Rs.300.",
+    href: "/products?category=bento-cakes",
+  },
+  {
+    icon: CakeSlice,
     name: "Whole Cakes",
-    description: "Classic 500 gm eggless cakes starting at just Rs.260.",
+    description: "Fresh 500 gm cakes starting at just Rs.400.",
     href: "/products?category=whole-cakes",
   },
   {
     icon: Star,
     name: "Premium Cakes",
-    description: "Premium 600 gm cakes like Truffle, Red Velvet, Rasmalai and more.",
+    description: "Premium 600 gm cakes with delicious flavors.",
     href: "/products?category=premium-cakes",
   },
   {
     icon: Sparkles,
-    name: "Special Cakes",
-    description: "Special 600 gm cakes with extra toppings and flavors.",
-    href: "/products?category=special-cakes",
+    name: "Cakes 1kg",
+    description: "Celebrate bigger with our delicious 1 kg cakes.",
+    href: "/products?category=cakes-1kg",
   },
   {
-    icon: Scissors,
-    name: "Slices & Puddings",
-    description: "Cake slices, puddings, and brownie boxes for quick treats.",
-    href: "/products?category=slices-puddings",
+    icon: Heart,
+    name: "Cake Pastries",
+    description: "Delicious pastries and doughnuts for every craving.",
+    href: "/products?category=pastries",
   },
   {
     icon: UtensilsCrossed,
     name: "Snacks",
-    description: "Burgers, rolls, pizzas, sandwiches and more savory options.",
+    description: "Burgers, kulchas, cheese rolls, hotdogs and more.",
     href: "/products?category=snacks",
   },
 ];
@@ -42,11 +54,13 @@ export function CategoriesSection() {
           <span className="mb-2 text-xs font-semibold uppercase tracking-widest text-accent">
             Browse By Category
           </span>
+
           <h2 className="text-balance font-serif text-3xl font-bold text-foreground md:text-4xl">
             What Are You Craving?
           </h2>
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((cat) => (
             <Link
               key={cat.name}
@@ -56,9 +70,11 @@ export function CategoriesSection() {
               <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-secondary transition-colors group-hover:bg-accent">
                 <cat.icon className="h-6 w-6 text-primary transition-colors group-hover:text-accent-foreground" />
               </div>
+
               <h3 className="mb-2 font-serif text-base font-semibold text-card-foreground">
                 {cat.name}
               </h3>
+
               <p className="text-xs leading-relaxed text-muted-foreground">
                 {cat.description}
               </p>
