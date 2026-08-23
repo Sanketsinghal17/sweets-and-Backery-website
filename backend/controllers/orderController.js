@@ -92,6 +92,7 @@ ${itemsText}
 💰 Subtotal: ₹${calculatedTotal}
 🚚 Delivery: ₹${deliveryCharge}
 💵 Total: ₹${finalTotal}
+💳 Payment: ${paymentMethod === "ONLINE" ? "ONLINE" : "CASH"}
     `
 
     await axios.post(
