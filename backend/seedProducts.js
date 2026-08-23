@@ -14,7 +14,7 @@ const products = [
     name: "Pineapple Bento Cake",
     description: "Soft and creamy pineapple bento cake",
     price: 300,
-    image: "/images/products/pineapple-cake.jpg",
+    image: "/images/products/pineapple-bento.jpeg",
     category: "bento-cakes",
     weight: "250 gm"
   },
@@ -23,7 +23,7 @@ const products = [
     name: "Strawberry Bento Cake",
     description: "Fresh strawberry cream bento cake",
     price: 300,
-    image: "/images/products/strawberry-cake.jpg",
+    image: "/images/products/strawberry-bento.jpeg",
     category: "bento-cakes",
     weight: "250 gm"
   },
@@ -32,7 +32,7 @@ const products = [
     name: "Blueberry Bento Cake",
     description: "Delicious blueberry cream bento cake",
     price: 300,
-    image: "/images/products/blueberry-cake.jpg",
+    image: "/images/products/blueberry-bento.jpeg",
     category: "bento-cakes",
     weight: "250 gm"
   },
@@ -41,7 +41,7 @@ const products = [
     name: "Truffle Bento Cake",
     description: "Rich chocolate truffle bento cake",
     price: 350,
-    image: "/images/products/chocolate-truffle-cake.jpg",
+    image: "/images/products/truffle-bento.jpeg",
     category: "bento-cakes",
     weight: "250 gm"
   },
@@ -55,7 +55,7 @@ const products = [
     name: "Strawberry Cake",
     description: "Fresh strawberry cream cake",
     price: 400,
-    image: "/images/products/strawberry-cake.jpg",
+    image: "/images/products/whole strawberry.jpeg",
     category: "whole-cakes",
     weight: "500 gm"
   },
@@ -64,7 +64,7 @@ const products = [
     name: "Pineapple Cake",
     description: "Fresh pineapple cream cake",
     price: 400,
-    image: "/images/products/pineapple-cake.jpg",
+    image: "/images/products/whole pineapple.jpeg",
     category: "whole-cakes",
     weight: "500 gm"
   },
@@ -82,7 +82,7 @@ const products = [
     name: "Blueberry Cake",
     description: "Delicious blueberry cream cake",
     price: 400,
-    image: "/images/products/blueberry-cake.jpg",
+    image: "/images/products/whole blueberry.jpeg",
     category: "whole-cakes",
     weight: "500 gm"
   },
@@ -91,7 +91,7 @@ const products = [
     name: "Butterscotch Cake",
     description: "Butterscotch cake with caramel flavor",
     price: 400,
-    image: "/images/products/butterscotch-cake.jpg",
+    image: "/images/products/whole butterscotch.jpeg",
     category: "whole-cakes",
     weight: "500 gm"
   },
@@ -105,7 +105,7 @@ const products = [
     name: "Truffle Cake",
     description: "Rich chocolate truffle cake",
     price: 550,
-    image: "/images/products/chocolate-truffle-cake.jpg",
+    image: "/images/products/truffle cake.jpeg",
     category: "premium-cakes",
     weight: "600 gm",
     featured: true
@@ -115,7 +115,7 @@ const products = [
     name: "Fruit Cake",
     description: "Fresh mixed fruit cream cake",
     price: 550,
-    image: "/images/products/fruit-cake.jpg",
+    image: "/images/products/fruit cake.jpeg",
     category: "premium-cakes",
     weight: "600 gm"
   },
@@ -124,7 +124,7 @@ const products = [
     name: "Red Velvet Cake",
     description: "Classic red velvet cake with creamy frosting",
     price: 550,
-    image: "/images/products/red-velvet-cake.jpg",
+    image: "/images/products/redvelvetcake.jpeg",
     category: "premium-cakes",
     weight: "600 gm",
     featured: true
@@ -134,7 +134,7 @@ const products = [
     name: "Brown Velvet Cake",
     description: "Rich brown velvet cake",
     price: 500,
-    image: "/images/products/chocolate-brownie.jpg",
+    image: "/images/products/broenvelvet cake.jpeg",
     category: "premium-cakes",
     weight: "600 gm"
   },
@@ -143,7 +143,7 @@ const products = [
     name: "White Forest Cake",
     description: "Creamy white forest cake",
     price: 500,
-    image: "/images/products/white-forest-cake.jpg",
+    image: "/images/products/whiteforest cake.jpeg",
     category: "premium-cakes",
     weight: "600 gm"
   },
@@ -152,7 +152,7 @@ const products = [
     name: "Rasmalai Cake",
     description: "Delicious rasmalai flavored cake",
     price: 500,
-    image: "/images/products/rasmalai-cake.jpg",
+    image: "/images/products/rasmalai cake.jpeg",
     category: "premium-cakes",
     weight: "600 gm"
   },
@@ -161,7 +161,7 @@ const products = [
     name: "Blueberry Cake",
     description: "Rich blueberry cream cake",
     price: 500,
-    image: "/images/products/blueberry-cake.jpg",
+    image: "/images/products/blueberry cake.jpeg",
     category: "premium-cakes",
     weight: "600 gm"
   },
@@ -170,7 +170,7 @@ const products = [
     name: "Chocolate Cake",
     description: "Rich chocolate cream cake",
     price: 500,
-    image: "/images/products/chocolate-cream-cake.jpg",
+    image: "/images/products/chocolate cake.jpeg",
     category: "premium-cakes",
     weight: "600 gm"
   },
@@ -179,7 +179,7 @@ const products = [
     name: "Black Forest Cake",
     description: "Classic chocolate black forest cake",
     price: 450,
-    image: "/images/products/black-forest-cake.jpg",
+    image: "/images/products/blackforest cake.jpeg",
     category: "premium-cakes",
     weight: "600 gm"
   },
@@ -280,7 +280,7 @@ const products = [
     name: "Truffle Pastry",
     description: "Rich chocolate truffle pastry",
     price: 80,
-    image: "/images/products/cake-slice.jpg",
+    image: "/images/products/truffle.jpeg",
     category: "pastries"
   },
 
@@ -288,7 +288,7 @@ const products = [
     name: "Red Velvet Pastry",
     description: "Soft and creamy red velvet pastry",
     price: 80,
-    image: "/images/products/cake-slice.jpg",
+    image: "/images/products/redvelvet.jpeg",
     category: "pastries"
   },
 
@@ -296,7 +296,7 @@ const products = [
     name: "White Forest Pastry",
     description: "Creamy white forest pastry",
     price: 80,
-    image: "/images/products/cake-slice.jpg",
+    image: "/images/products/whiteforest.jpeg",
     category: "pastries"
   },
 
@@ -304,7 +304,7 @@ const products = [
     name: "Black Forest Pastry",
     description: "Classic black forest pastry",
     price: 80,
-    image: "/images/products/cake-slice.jpg",
+    image: "/images/products/blackforest.jpeg",
     category: "pastries"
   },
 
@@ -312,7 +312,7 @@ const products = [
     name: "Pineapple Pastry",
     description: "Fresh pineapple cream pastry",
     price: 80,
-    image: "/images/products/cake-slice.jpg",
+    image: "/images/products/pineapple.jpeg",
     category: "pastries"
   },
 
@@ -320,7 +320,7 @@ const products = [
     name: "Butterscotch Pastry",
     description: "Delicious butterscotch cream pastry",
     price: 80,
-    image: "/images/products/cake-slice.jpg",
+    image: "/images/products/butterscotch.jpeg",
     category: "pastries"
   },
 
@@ -328,7 +328,7 @@ const products = [
     name: "Doughnut",
     description: "Freshly baked delicious doughnut",
     price: 70,
-    image: "/images/products/cinnamon-rolls.jpg",
+    image: "/images/products/doughnet.jpeg",
     category: "pastries"
   },
 
@@ -341,7 +341,7 @@ const products = [
     name: "Stuff Kulcha",
     description: "Soft and delicious stuffed kulcha",
     price: 80,
-    image: "/images/products/paneer-roll.jpg",
+    image: "/images/products/stuffkulcha.jpeg",
     category: "snacks"
   },
 
@@ -349,7 +349,7 @@ const products = [
     name: "Burger",
     description: "Fresh veg burger with delicious fillings",
     price: 80,
-    image: "/images/products/burger.jpg",
+    image: "/images/products/burger.jpeg",
     category: "snacks",
     featured: true
   },
@@ -358,7 +358,7 @@ const products = [
     name: "Cheese Roll",
     description: "Crispy roll filled with cheesy goodness",
     price: 100,
-    image: "/images/products/paneer-roll.jpg",
+    image: "/images/products/cheese roll.jpeg",
     category: "snacks"
   },
 
@@ -366,7 +366,7 @@ const products = [
     name: "Hotdog",
     description: "Soft bun hotdog with delicious fillings",
     price: 100,
-    image: "/images/products/hot-dog.jpg",
+    image: "/images/products/hot dog.jpeg",
     category: "snacks"
   }
 
