@@ -3,62 +3,62 @@
 import { useCart } from "@/components/cart-provider"
 import { useState, useEffect } from "react"
 
-export default function CheckoutPage(){
+export default function CheckoutPage() {
 
   const { items, clearCart } = useCart()
 
-  const [mounted,setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
-  const [name,setName] = useState("")
-  const [phone,setPhone] = useState("")
-  const [address,setAddress] = useState("")
+  const [name, setName] = useState("")
+  const [phone, setPhone] = useState("")
+  const [address, setAddress] = useState("")
 
   // Payment method
-  const [paymentMethod,setPaymentMethod] = useState("COD")
+  const [paymentMethod, setPaymentMethod] = useState("COD")
 
-  useEffect(()=>{
+  useEffect(() => {
     setMounted(true)
-  },[])
+  }, [])
 
-  async function placeOrder(){
+  async function placeOrder() {
 
-    if(items.length === 0){
+    if (items.length === 0) {
       alert("Cart is empty")
       return
     }
 
-    if(!name || !phone || !address){
+    if (!name || !phone || !address) {
       alert("Please fill all customer details")
       return
     }
 
-    const orderItems = items.map((item)=>({
+    const orderItems = items.map((item) => ({
       product: item.product?._id || item._id,
       quantity: item.quantity
     }))
 
-    try{
+    try {
 
       const res = await fetch(
         "https://sweets-and-backery-website.onrender.com/api/orders",
         {
-          method:"POST",
-          headers:{
-            "Content-Type":"application/json"
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
           },
-          body:JSON.stringify({
-            customerName:name,
+          body: JSON.stringify({
+            customerName: name,
             phone,
             address,
             orderItems,
-            paymentMethod:paymentMethod
+            paymentMethod: paymentMethod
           })
         }
       )
 
       const data = await res.json()
 
-      if(!res.ok){
+      if (!res.ok) {
         alert(data.message || "Order failed")
         return
       }
@@ -66,11 +66,11 @@ export default function CheckoutPage(){
       clearCart()
 
       window.location.href =
-        `/order-success?name=${name}&total=${data.totalAmount}&delivery=${data.deliveryCharge}&items=${encodeURIComponent(
+        `/order-success?name=${encodeURIComponent(name)}&total=${data.totalAmount}&delivery=${data.deliveryCharge}&items=${encodeURIComponent(
           JSON.stringify(data.orderItemsWithDetails)
         )}`
 
-    }catch(error){
+    } catch (error) {
 
       console.error(error)
       alert("Server error")
@@ -78,11 +78,11 @@ export default function CheckoutPage(){
     }
   }
 
-  if(!mounted){
+  if (!mounted) {
     return null
   }
 
-  return(
+  return (
 
     <div className="max-w-3xl mx-auto py-20 px-4">
 
@@ -95,21 +95,21 @@ export default function CheckoutPage(){
       <input
         placeholder="Name"
         value={name}
-        onChange={(e)=>setName(e.target.value)}
+        onChange={(e) => setName(e.target.value)}
         className="border p-3 w-full mb-4 rounded"
       />
 
       <input
         placeholder="Phone"
         value={phone}
-        onChange={(e)=>setPhone(e.target.value)}
+        onChange={(e) => setPhone(e.target.value)}
         className="border p-3 w-full mb-4 rounded"
       />
 
       <textarea
         placeholder="Address"
         value={address}
-        onChange={(e)=>setAddress(e.target.value)}
+        onChange={(e) => setAddress(e.target.value)}
         className="border p-3 w-full mb-6 rounded"
       />
 
@@ -132,11 +132,11 @@ export default function CheckoutPage(){
               name="paymentMethod"
               value="COD"
               checked={paymentMethod === "COD"}
-              onChange={(e)=>setPaymentMethod(e.target.value)}
+              onChange={(e) => setPaymentMethod(e.target.value)}
             />
 
             <span>
-              Cash on Delivery
+              💵 Cash on Delivery
             </span>
 
           </label>
@@ -149,13 +149,13 @@ export default function CheckoutPage(){
             <input
               type="radio"
               name="paymentMethod"
-              value="Online"
-              checked={paymentMethod === "Online"}
-              onChange={(e)=>setPaymentMethod(e.target.value)}
+              value="ONLINE"
+              checked={paymentMethod === "ONLINE"}
+              onChange={(e) => setPaymentMethod(e.target.value)}
             />
 
             <span>
-              Online Payment
+              💳 Online Payment
             </span>
 
           </label>
@@ -167,7 +167,7 @@ export default function CheckoutPage(){
 
       {/* QR CODE */}
 
-      {paymentMethod === "Online" && (
+      {paymentMethod === "ONLINE" && (
 
         <div className="border rounded-lg p-6 mb-6 text-center">
 
@@ -201,7 +201,7 @@ export default function CheckoutPage(){
         className="bg-black text-white px-6 py-3 rounded w-full"
       >
 
-        {paymentMethod === "Online"
+        {paymentMethod === "ONLINE"
           ? "I Have Paid - Place Order"
           : "Place Order"
         }
@@ -211,5 +211,4 @@ export default function CheckoutPage(){
     </div>
 
   )
-
 }
