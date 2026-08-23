@@ -73,7 +73,7 @@ const products = [
     name: "Chocolate Cake",
     description: "Rich and creamy chocolate cake",
     price: 400,
-    image: "/images/products/chocolate-cream-cake.jpg",
+    image: "/images/products/chocolate cake.jpeg",
     category: "whole-cakes",
     weight: "500 gm"
   },
