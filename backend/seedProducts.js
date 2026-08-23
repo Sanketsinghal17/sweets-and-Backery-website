@@ -193,7 +193,7 @@ const products = [
     name: "Truffle Cake",
     description: "Rich chocolate truffle cake",
     price: 900,
-    image: "/images/products/chocolate-truffle-cake.jpg",
+    image: "/images/products/truffle cake.jpeg",
     category: "cakes-1kg",
     weight: "1 kg",
     featured: true
@@ -203,7 +203,7 @@ const products = [
     name: "Red Velvet Cake",
     description: "Classic red velvet cake",
     price: 900,
-    image: "/images/products/red-velvet-cake.jpg",
+    image: "/images/products/redvelvetcake.jpeg",
     category: "cakes-1kg",
     weight: "1 kg"
   },
@@ -212,7 +212,7 @@ const products = [
     name: "Pineapple Cake",
     description: "Fresh pineapple cream cake",
     price: 700,
-    image: "/images/products/pineapple-cake.jpg",
+    image: "/images/products/pineapple cake.jpeg",
     category: "cakes-1kg",
     weight: "1 kg"
   },
@@ -221,7 +221,7 @@ const products = [
     name: "Chocolate Cake",
     description: "Rich chocolate cream cake",
     price: 700,
-    image: "/images/products/chocolate-cream-cake.jpg",
+    image: "/images/products/chocolate cake.jpeg",
     category: "cakes-1kg",
     weight: "1 kg"
   },
@@ -230,7 +230,7 @@ const products = [
     name: "Blueberry Cake",
     description: "Delicious blueberry cream cake",
     price: 700,
-    image: "/images/products/blueberry-cake.jpg",
+    image: "/images/products/blueberry cake.jpeg",
     category: "cakes-1kg",
     weight: "1 kg"
   },
@@ -239,7 +239,7 @@ const products = [
     name: "Strawberry Cake",
     description: "Fresh strawberry cream cake",
     price: 700,
-    image: "/images/products/strawberry-cake.jpg",
+    image: "/images/products/strawberry-bento.jpeg",
     category: "cakes-1kg",
     weight: "1 kg"
   },
@@ -248,7 +248,7 @@ const products = [
     name: "White Forest Cake",
     description: "Creamy white forest cake",
     price: 800,
-    image: "/images/products/white-forest-cake.jpg",
+    image: "/images/products/whiteforest cake.jpeg",
     category: "cakes-1kg",
     weight: "1 kg"
   },
@@ -257,7 +257,7 @@ const products = [
     name: "Butterscotch Cake",
     description: "Butterscotch cake with caramel flavor",
     price: 800,
-    image: "/images/products/butterscotch-cake.jpg",
+    image: "/images/products/whole butterscotch.jpeg",
     category: "cakes-1kg",
     weight: "1 kg"
   },
@@ -266,7 +266,7 @@ const products = [
     name: "Black Forest Cake",
     description: "Classic black forest cake",
     price: 800,
-    image: "/images/products/black-forest-cake.jpg",
+    image: "/images/products/blackforest cake.jpeg",
     category: "cakes-1kg",
     weight: "1 kg"
   },
