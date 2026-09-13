@@ -28,7 +28,7 @@ export function CartItems() {
     );
   }
 
-  const deliveryCharge = totalPrice >= 500 ? 0 : 30;
+  const deliveryCharge = totalPrice >= 350 ? 0 : 30;
 
   return (
     <div className="grid gap-8 lg:grid-cols-3">
@@ -160,7 +160,7 @@ export function CartItems() {
           </Link>
 
           <p className="mt-3 text-center text-xs text-muted-foreground">
-            Free delivery on orders over Rs.500
+            Free delivery on orders over Rs.350
           </p>
         </div>
       </div>

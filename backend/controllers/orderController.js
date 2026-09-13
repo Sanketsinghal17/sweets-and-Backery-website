@@ -56,7 +56,7 @@ export const createOrder = async (req, res) => {
 
     // 🚚 DELIVERY LOGIC
     let deliveryCharge = 0
-    if (calculatedTotal < 500) {
+    if (calculatedTotal < 350) {
       deliveryCharge = 30
     }
 
