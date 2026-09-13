@@ -69,15 +69,6 @@ export default function ContactPage() {
             );
           })}
 
-          {/* Menu image from the shop */}
-          <div className="overflow-hidden rounded-xl border border-border">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-03-03%20at%2011.30.56%20AM-b5rL96DANQdlflhHjToYT3BKlMR1ry.jpeg"
-              alt="Variety Sweets & Bakers - Full Cake Menu"
-              className="w-full"
-            />
-          </div>
         </div>
 
         {/* Contact Form */}
