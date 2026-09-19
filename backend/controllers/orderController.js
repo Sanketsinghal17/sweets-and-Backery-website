@@ -76,8 +76,8 @@ export const createOrder = async (req, res) => {
     const savedOrder = await order.save()
 
     // 🔔 TELEGRAM
-    const BOT_TOKEN = "8630182529:AAFU3-w7UjQmolGUMY0AZjZjP6VI1TfzlxE"
-    const CHAT_ID = "5971597612"
+    const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN
+    const CHAT_ID = process.env.TELEGRAM_CHAT_ID
 
     const message = `
 🛒 New Order Received!

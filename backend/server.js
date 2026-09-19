@@ -37,8 +37,8 @@ app.get("/api/test", (req, res) => {
 })
 
 // ⚠️ MOVE THESE TO .env LATER
-const TELEGRAM_TOKEN = "8630182529:AAFU3-w7UjQmolGUMY0AZjZjP6VI1TfzlxE"
-const TELEGRAM_CHAT_ID = "5971597612"
+const TELEGRAM_TOKEN = process.env.TELEGRAM_BOT_TOKEN
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID
 
 // ✅ Contact API
 app.post("/api/contact", async (req, res) => {
