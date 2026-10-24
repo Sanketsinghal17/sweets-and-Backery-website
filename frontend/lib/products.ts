@@ -5,6 +5,7 @@ export type Product = {
   name: string;
   description: string;
   price: number;
+  originalPrice?: number | null;
   image: string;
   category:
     | "bento-cakes"
@@ -349,13 +350,13 @@ export const products: Product[] = [
     featured: true,
   },
   {
-    id: "snack-cheese-roll",
-    name: "Cheese Roll",
-    description: "Crispy roll filled with cheesy goodness.",
-    price: 100,
-    image: "/images/products/paneer-roll.jpg",
-    category: "snacks",
-  },
+  id: "snack-pizza-sandwich",
+  name: "Pizza Sandwich",
+  description: "Delicious pizza sandwich with cheesy filling.",
+  price: 100,
+  image: "/images/products/pizza-sandwich.jpg",
+  category: "snacks",
+},
   {
     id: "snack-hotdog",
     name: "Hotdog",

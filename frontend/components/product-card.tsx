@@ -1,3 +1,4 @@
+
 "use client";
 
 import { ShoppingBag } from "lucide-react";
@@ -8,18 +9,29 @@ import { Button } from "@/components/ui/button";
 export function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
 
-  // ✅ FIX IMAGE URL
+  // Fix image URL
   const imageUrl = product.image?.startsWith("/uploads")
-  ? `https://sweets-and-backery-website.onrender.com${product.image}`
-  : product.image?.startsWith("/images")
-  ? product.image   // ✅ static images
-  : product.image
+    ? `https://sweets-and-backery-website.onrender.com${product.image}`
+    : product.image?.startsWith("/images")
+    ? product.image
+    : product.image;
+
+  // Show discount only when original price is greater
+  const hasDiscount =
+    typeof product.originalPrice === "number" &&
+    product.originalPrice > product.price;
+
+  const discountPercentage = hasDiscount
+    ? Math.round(
+        ((product.originalPrice! - product.price) /
+          product.originalPrice!) *
+          100
+      )
+    : 0;
+
   return (
     <article className="group overflow-hidden rounded-xl border border-border bg-card transition-shadow duration-300 hover:shadow-lg">
-      
       <div className="relative aspect-square overflow-hidden">
-        
-        {/* ✅ USE NORMAL IMG INSTEAD OF NEXT IMAGE */}
         <img
           src={imageUrl}
           alt={product.name}
@@ -35,6 +47,12 @@ export function ProductCard({ product }: { product: Product }) {
             {product.weight}
           </span>
         )}
+
+        {hasDiscount && (
+          <span className="absolute bottom-3 left-3 rounded-full bg-red-600 px-3 py-1 text-xs font-bold text-white">
+            {discountPercentage}% OFF
+          </span>
+        )}
       </div>
 
       <div className="flex flex-col gap-3 p-5">
@@ -46,10 +64,18 @@ export function ProductCard({ product }: { product: Product }) {
           {product.description}
         </p>
 
-        <div className="flex items-center justify-between pt-1">
-          <span className="text-lg font-bold text-foreground">
-            Rs.{product.price}
-          </span>
+        <div className="flex items-center justify-between gap-2 pt-1">
+          <div className="flex flex-wrap items-baseline gap-2">
+            {hasDiscount && (
+              <span className="text-sm text-muted-foreground line-through">
+                Rs.{product.originalPrice}
+              </span>
+            )}
+
+            <span className="text-lg font-bold text-foreground">
+              Rs.{product.price}
+            </span>
+          </div>
 
           <Button
             size="sm"
@@ -61,7 +87,6 @@ export function ProductCard({ product }: { product: Product }) {
           </Button>
         </div>
       </div>
-
     </article>
   );
 }

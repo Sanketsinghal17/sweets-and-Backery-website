@@ -1,3 +1,4 @@
+
 import mongoose from "mongoose"
 
 const productSchema = new mongoose.Schema({
@@ -8,6 +9,11 @@ const productSchema = new mongoose.Schema({
   price: {
     type: Number,
     required: true
+  },
+  originalPrice: {
+    type: Number,
+    min: 0,
+    default: null
   },
   category: {
     type: String,
